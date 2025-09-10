@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - SaloonEase</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/services.css">
+</head>
+<body>
+   
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../Assets/images/Leonardo_Phoenix_10_I_want_a_logo_for_SaloonEase_with_a_light_3.jpg" alt="Logo" style="height:40px;">
+                SaloonEase
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="CustomerDashboard.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="customer-appointment.html">Appointments</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="reviews.html">Reviews</a></li>
+                    <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+                    <li><a class="dropdown-item text-danger" href="login.html">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="
+        background: url('../Assets/images/admin-saloon.jpg') no-repeat center center/cover;
+        padding: 120px 0;
+        position: relative;
+        color: #fff;
+    ">
+        <div style="
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1;
+        "></div>
+
+        <div class="container" style="position: relative; z-index: 2;">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="fw-bold">Our Premium Services</h1>
+                    <p class="lead">Discover our comprehensive range of professional salon services designed to make you look and feel your absolute best.</p>
+                    <a href="customer-appointment.html" class="btn btn-primary btn-lg me-3">Book Appointment</a>
+                    <a href="#services" class="btn btn-outline-light btn-lg">View All Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section py-5" id="services">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2>Professional Services</h2>
+                <p>From classic cuts to modern styling, our experienced professionals deliver exceptional results using premium products and latest techniques.</p>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="text-center mb-4">
+                <button class="btn btn-outline-primary filter-btn active me-2" data-filter="all">All Services</button>
+                <button class="btn btn-outline-primary filter-btn me-2" data-filter="hair">Hair Services</button>
+                <button class="btn btn-outline-primary filter-btn me-2" data-filter="facial">Facial Treatments</button>
+                <button class="btn btn-outline-primary filter-btn me-2" data-filter="body">Body Treatments</button>
+                <button class="btn btn-outline-primary filter-btn" data-filter="nails">Nail Services</button>
+            </div>
+
+            <div class="row g-4" id="servicesContainer">
+                <!-- Dynamic service cards will be appended here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="container py-5" id="contact">
+      <h2 class="text-center mb-4"><b>Contact Us</b></h2>
+      <p class="text-center">We’d love to hear from you. Visit or reach us through the details below.</p>
+
+      <div class="row justify-content-center">
+        <div class="col-md-4 text-center mb-4">
+          <i class="fas fa-map-marker-alt fa-2x mb-2 text-danger"></i>
+          <h5>Our Location</h5>
+          <p>123 Beauty Street, Colombo, Sri Lanka</p>
+        </div>
+        <div class="col-md-4 text-center mb-4">
+          <i class="fas fa-phone fa-2x mb-2 text-success"></i>
+          <h5>Call Us</h5>
+          <p>+94 71 123 4567<br>+94 77 987 6543</p>
+        </div>
+        <div class="col-md-4 text-center mb-4">
+          <i class="fas fa-envelope fa-2x mb-2 text-primary"></i>
+          <h5>Email Us</h5>
+          <p>info@saloonEase.com<br>support@saloonEase.com</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center" style="background-color: #2C1810; color: #fff;">
+      <p class="mb-0">&copy; 2025 SaloonEase. All Rights Reserved.</p>
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/customer-services.js"></script>
+</body> 
+</html>

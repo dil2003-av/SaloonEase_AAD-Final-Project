@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - SaloonEase</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="../css/gallery.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="../Assets/images/Leonardo_Phoenix_10_I_want_a_logo_for_SaloonEase_with_a_light_3.jpg" alt="Logo" style="height:40px;">
+            SaloonEase
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="CustomerDashboard.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link active" href="customer-appointment.html">Appointments</a></li>
+                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link active" href="reviews.html">Reviews</a></li>
+                <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+                <li><a class="dropdown-item text-danger" href="login.html">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero-section" style="background: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80') no-repeat center center/cover;">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="fw-bold">Our Gallery</h1>
+                    <p class="lead">Discover our work through stunning transformations and beautiful moments captured at SaloonEase. See the artistry and passion that goes into every service we provide.</p>
+                    <a href="customer-appointment.html" class="btn btn-primary btn-lg me-3">Book Appointment</a>
+                    <a href="#gallery" class="btn btn-outline-light btn-lg">View Gallery</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-5" id="gallery">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Our Work Showcase</h2>
+                <p>Browse through our portfolio of stunning hair transformations, elegant bridal looks, relaxing spa moments, and beautiful nail art creations.</p>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="text-center mb-5">
+                <button class="btn btn-outline-primary filter-btn active" data-filter="all">All</button>
+                <button class="btn btn-outline-primary filter-btn" data-filter="hair">Hair Styling</button>
+                <button class="btn btn-outline-primary filter-btn" data-filter="bridal">Bridal Looks</button>
+                <button class="btn btn-outline-primary filter-btn" data-filter="facial">Facial Treatments</button>
+                <button class="btn btn-outline-primary filter-btn" data-filter="nails">Nail Art</button>
+                <button class="btn btn-outline-primary filter-btn" data-filter="spa">Spa & Wellness</button>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="row g-4">
+                <!-- Hair Styling -->
+                <div class="col-lg-4 col-md-6 gallery-category hair">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-title="Modern Hair Cut & Color">
+                        <img src="../Assets/images/Hairsyling1.jpg" alt="Hair Styling">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-category hair">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-title="Balayage Hair Color">
+                        <img src="../Assets/images/Haistyling2.jpg" alt="Hair Coloring">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-category hair">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="https://images.unsplash.com/photo-1559622214-5f5c6a6c2d9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-title="Curly Hair Styling">
+                        <img src="../Assets/images/HairStyling3.jpg" alt="Hair Styling">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bridal Looks -->
+                <div class="col-lg-4 col-md-6 gallery-category bridal">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-title="Elegant Bridal Hair">
+                        <img src="../Assets/images/Bridallook1.jpg" alt="Bridal Hair">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-category bridal">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-title="Bridal Makeup & Hair">
+                        <img src="../Assets/images/bridallook2.jpg" alt="Bridal Makeup">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-category bridal">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="https://images.unsplash.com/photo-1519699047748-de8e457a634e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-title="Traditional Bridal Look">
+                        <img src="../Assets/images/bridallook3.jpg" alt="Bridal Traditional">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facial Treatments -->
+                <div class="col-lg-4 col-md-6 gallery-category facial">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="https://images.unsplash.com/photo-1540555700478-4be289ecbe7d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-title="Relaxing Facial Treatment">
+                        <img src="../Assets/images/facial1.jpg" alt="Facial Treatment">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-category facial">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="https://images.unsplash.com/photo-1570172619644-dfd03ed5d7de?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-title="Anti-Aging Facial">
+                        <img src="../Assets/images/facial2.jpg" alt="Anti-Aging Facial">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-category facial">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-title="Deep Cleansing Facial">
+                        <img src="../Assets/images/facial3.jpg" alt="Deep Cleansing">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nail Art -->
+                <div class="col-lg-4 col-md-6 gallery-category nails">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="https://images.unsplash.com/photo-1604656853797-5d5ca5c6d899?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-title="French Manicure">
+                        <img src="../Assets/images/nail1.jpg" alt="French Manicure">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-category nails">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-title="Gel Nail Art">
+                        <img src="../Assets/images/nails2.jpg" alt="Gel Nails">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-category nails">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="https://images.unsplash.com/photo-1516975080664-ed24fc7c9c8e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-title="Nail Extensions">
+                        <img src="../Assets/images/nails3.jpg" alt="Nail Extensions">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spa & Wellness -->
+                <div class="col-lg-4 col-md-6 gallery-category spa">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-title="Relaxing Spa Environment">
+                        <img src="../Assets/images/sap1.jpg" alt="Spa Environment">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-category spa">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="https://images.unsplash.com/photo-1540555700478-4be289ecbe7d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-title="Body Treatment">
+                        <img src="../Assets/images/spa2.jpg" alt="Body Treatment">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 gallery-category spa">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" data-image="https://images.unsplash.com/photo-1544168212-5c5a77d325d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" data-title="Massage Therapy">
+                        <img src="../Assets/images/spa3.jpg" alt="Massage">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5" style="background: linear-gradient(135deg, #ef68a9, #c55977); color: white;">
+        <div class="container text-center">
+            <h2 class="mb-4">Ready to Transform Your Look?</h2>
+            <p class="lead mb-4">Book your appointment today and let our experts create your perfect style.</p>
+        </div>
+    </section>
+
+    <!-- Gallery Modal -->
+    <div class="modal fade" id="galleryModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Gallery Image</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalImage" src="" alt="Gallery Image" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center">
+        <p class="mb-0">&copy; 2025 SaloonEase. All Rights Reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Category filter functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                const galleryItems = document.querySelectorAll('.gallery-category');
+                
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.classList.contains(filter)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Modal functionality
+        const galleryModal = document.getElementById('galleryModal');
+        if (galleryModal) {
+            galleryModal.addEventListener('show.bs.modal', function (event) {
+                const button = event.relatedTarget;
+                const imageSrc = button.getAttribute('data-image');
+                const title = button.getAttribute('data-title');
+                
+                const modalImage = galleryModal.querySelector('#modalImage');
+                const modalTitle = galleryModal.querySelector('#modalTitle');
+                
+                modalImage.src = imageSrc;
+                modalTitle.textContent = title;
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

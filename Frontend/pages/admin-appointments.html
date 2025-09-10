@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Appointments</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/admin-style.css">
+  <style>
+    .table-light th {
+      color: #000;       /* Make header text visible */
+      background-color: #f8f9fa; /* Light background for headers */
+    }
+    .table-hover tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+    
+    
+  </style>
+</head>
+<body>
+  <div class="d-flex">
+    <!-- Sidebar -->
+    <div class="d-flex flex-column flex-shrink-0 p-3 sidebar" style="width: 280px;">
+      <div class="sidebar-logo">
+        <div class="logo-circle"><i class="fas fa-cut"></i></div>
+        <span>SaloonEase</span>
+      </div>
+      <hr>
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li><a href="admindashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="admin-services.html" class="nav-link">Services</a></li>
+        <li><a href="admin-appointments.html" class="nav-link active">Appointments</a></li>
+            <li><a href="admin-profile.html" class="nav-link"><i class="fas fa-user-circle"></i> Profile</a></li>
+    <li><a href="admin-settings.html" class="nav-link"><i class="fas fa-cog"></i> Settings</a></li>
+    <li><a href="admin-reports.html" class="nav-link"><i class="fas fa-chart-line"></i> Reports</a></li>
+    <li><a href="admin-users.html" class="nav-link"><i class="fas fa-users"></i>Reviews</a></li>
+    <li class="mt-4"><a href="login.html" class="nav-link text-danger"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content p-4" style="flex-grow:1;">
+      <h2 class="mb-4">Appointment Management</h2>
+
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>User Email</th>
+              <th>Service</th>
+              <th>Price (Rs.)</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminAppointmentTableBody">
+            <!-- Sample row for testing -->
+            <tr>
+              <td>1</td>
+              <td>testuser@gmail.com</td>
+              <td>Haircut</td>
+              <td>1500</td>
+              <td>2025-09-10</td>
+              <td>10:00 AM</td>
+              <td>Pending</td>
+              <td>
+                <button class="btn btn-sm btn-warning">Edit</button>
+                <button class="btn btn-sm btn-danger">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/admin-appointments.js"></script>
+</body>
+</html>

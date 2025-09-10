@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile - SaloonEase</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<link rel="stylesheet" href="../css/profile.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="../Assets/images/Leonardo_Phoenix_10_I_want_a_logo_for_SaloonEase_with_a_light_3.jpg" alt="Logo" style="height:40px;">
+            SaloonEase
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="CustomerDashboard.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link active" href="appointment.html">Appointments</a></li>
+                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link active" href="reviews.html">Reviews</a></li>
+                <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+                <li><a class="dropdown-item text-danger" href="login.html">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+<div class="container">
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar" id="avatar"></div>
+            <h2>My Profile</h2>
+        </div>
+        <div id="profile-content">
+            <div class="profile-field">
+                <span class="profile-label">Name:</span>
+                <span id="user-name" class="profile-value">Loading...</span>
+            </div>
+            <div class="profile-field">
+                <span class="profile-label">Email:</span>
+                <span id="user-email" class="profile-value">Loading...</span>
+            </div>
+            <div class="text-center mt-4 d-flex justify-content-center gap-3">
+                <button id="edit-profile" class="btn btn-primary">
+                    <i class="fas fa-edit me-2"></i>Edit Profile
+                </button>
+                <button id="logout-btn" class="btn btn-logout">
+                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Profile Modal -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="editProfileForm">
+          <div class="mb-3">
+            <label for="edit-username" class="form-label">Name</label>
+            <input type="text" id="edit-username" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="edit-password" class="form-label">Password</label>
+            <input type="password" id="edit-password" class="form-control">
+          </div>
+          <div class="mb-3">
+            <label for="edit-confirm-password" class="form-label">Confirm Password</label>
+            <input type="password" id="edit-confirm-password" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const token = localStorage.getItem("token");
+
+// Load profile
+async function loadProfile() {
+    try {
+        const res = await fetch("http://localhost:8080/api/v1/profile", {
+            headers: { "Authorization": `Bearer ${token}` }
+        });
+        if (!res.ok) throw new Error("Failed to fetch profile");
+        const profile = await res.json();
+
+        document.getElementById("user-name").textContent = profile.username;
+        document.getElementById("user-email").textContent = profile.email;
+
+        const initials = profile.username.split(" ").map(n => n[0]).join("").toUpperCase();
+        document.getElementById("avatar").textContent = initials;
+
+        document.getElementById("edit-username").value = profile.username;
+
+    } catch (err) {
+        console.error(err);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Failed to load profile. Please log in again.'
+        }).then(() => {
+            window.location.href = "/login.html";
+        });
+    }
+}
+loadProfile();
+
+// Logout
+document.getElementById("logout-btn").addEventListener("click", () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login.html";
+});
+
+// Edit Profile Modal
+const editModal = new bootstrap.Modal(document.getElementById("editProfileModal"));
+document.getElementById("edit-profile").addEventListener("click", () => editModal.show());
+
+// Submit Edit Form
+document.getElementById("editProfileForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const username = document.getElementById("edit-username").value;
+    const password = document.getElementById("edit-password").value;
+    const confirmPassword = document.getElementById("edit-confirm-password").value;
+
+    if (password && password !== confirmPassword) {
+        Swal.fire({ icon: 'warning', title: 'Passwords do not match!' });
+        return;
+    }
+
+    try {
+        const res = await fetch("http://localhost:8080/api/v1/profile/update", {
+            method: "PUT",
+            headers: { 
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({ username, password })
+        });
+        if (!res.ok) throw new Error("Failed to update profile");
+
+        Swal.fire({ icon: 'success', title: 'Profile updated successfully!' });
+        editModal.hide();
+
+        // Update profile display immediately
+        document.getElementById("user-name").textContent = username;
+        const initials = username.split(" ").map(n => n[0]).join("").toUpperCase();
+        document.getElementById("avatar").textContent = initials;
+
+    } catch (err) {
+        console.error(err);
+        Swal.fire({ icon: 'error', title: 'Failed to update profile' });
+    }
+});
+</script>
+
+</body>
+</html>

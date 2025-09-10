@@ -1,0 +1,126 @@
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: url("../Assets/images/background.jpg") no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .signup-box {
+      width: 1200px;
+      height: 750px;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .form {
+      width: 50%;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #444;
+      font-size: 48px;
+      letter-spacing: 2px;
+    }
+
+    .form label {
+      text-align: left;
+      font-size: 20px;
+      font-weight: bold;
+      margin: 8px 0 4px;
+      color: #333;
+    }
+
+    .form input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 20px;
+    }
+
+    .password-box {
+      position: relative;
+    }
+
+    .toggle-eye {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 20px;
+      color: #141414;
+    }
+
+    .form button {
+      width: 100%;
+      padding: 12px;
+      background: #7b3c5a;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .form button:hover {
+      background: #ca0859;
+    }
+
+    .extra-links {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 20px;
+    }
+
+    .extra-links a {
+      color: #0072ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .extra-links a:hover {
+      text-decoration: underline;
+    }
+
+    .info {
+      width: 50%;
+      padding: 40px;
+      background: #d76f8d;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .info img {
+      width: 200px;
+      margin-bottom: 20px;
+    }
+
+    .info h2 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .info p {
+      font-size: 20px;
+      color: #555;
+      line-height: 1.6;
+    }

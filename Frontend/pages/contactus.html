@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - SaloonEase</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/contactus.css">
+
+</head>
+<body>
+    <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+  <div class="container">
+
+    <a class="navbar-brand" href="#">
+      <img src="../Assets/images/Leonardo_Phoenix_10_I_want_a_logo_for_SaloonEase_with_a_light_3.jpg" alt="Logo" style="height:40px;">
+      SaloonEase
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item"><a class="nav-link active" href="CustomerDashboard.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="customer-appointment.html">Appointments</a></li>
+        <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+         <li class="nav-item"><a class="nav-link active" href="reviews.html">Reviews</a></li>
+        <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+        <li><a class="dropdown-item text-danger" href="login.html">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto">
+                    <h1>Get In Touch</h1>
+                    <p>We'd love to hear from you! Reach out to us for appointments, questions, or just to say hello.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Information</h2>
+                <p>Multiple ways to reach us - choose what works best for you.</p>
+            </div>
+
+            <div class="row mb-5">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h4>Visit Us</h4>
+                        <p><strong>SaloonEase Beauty Studio</strong></p>
+                        <p>123 Beauty Street<br>
+                           Negombo, Western Province<br>
+                           Sri Lanka 11500</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h4>Call Us</h4>
+                        <p><strong>Main Line:</strong><br>
+                           <a href="tel:+94312345678" class="text-decoration-none">+94 31 234 5678</a></p>
+                        <p><strong>Mobile:</strong><br>
+                           <a href="tel:+94771234567" class="text-decoration-none">+94 77 123 4567</a></p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="contact-info-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4>Email Us</h4>
+                        <p><strong>General Inquiries:</strong><br>
+                           <a href="mailto:info@saloonease.lk" class="text-decoration-none">info@saloonease.lk</a></p>
+                        <p><strong>Appointments:</strong><br>
+                           <a href="mailto:booking@saloonease.lk" class="text-decoration-none">booking@saloonease.lk</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form and Business Hours -->
+            <div class="row">
+                <div class="col-lg-8 mb-4">
+                    <div class="contact-form">
+                        <h3 class="mb-4 text-center" style="color: var(--primary);">Send Us a Message</h3>
+                        
+                        <div id="successAlert" class="alert alert-success d-none" role="alert">
+                            <i class="fas fa-check-circle me-2"></i>
+                            Thank you! Your message has been sent successfully. We'll get back to you soon.
+                        </div>
+
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="firstName" class="form-label">First Name *</label>
+                                        <input type="text" class="form-control" id="firstName" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="lastName" class="form-label">Last Name *</label>
+                                        <input type="text" class="form-control" id="lastName" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email Address *</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="phone" class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" id="phone">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject *</label>
+                                <select class="form-control" id="subject" required>
+                                    <option value="">Choose a subject...</option>
+                                    <option value="appointment">Book Appointment</option>
+                                    <option value="services">Service Inquiry</option>
+                                    <option value="pricing">Pricing Information</option>
+                                    <option value="feedback">Feedback</option>
+                                    <option value="complaint">Complaint</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message *</label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="business-hours mb-4">
+                        <h3 class="mb-4 text-center" style="color: var(--primary);">Business Hours</h3>
+                        <ul class="hours-list">
+                            <li><span class="day">Monday - Friday</span> <span>9:00 AM - 7:00 PM</span></li>
+                            <li><span class="day">Saturday</span> <span>9:00 AM - 8:00 PM</span></li>
+                            <li><span class="day">Sunday</span> <span>10:00 AM - 5:00 PM</span></li>
+                            <li><span class="day">Holidays</span> <span>Closed</span></li>
+                        </ul>
+                        <div class="mt-4 text-center">
+                            <p><em>We recommend booking appointments in advance</em></p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p class="mb-2">&copy; 2025 SaloonEase. All Rights Reserved.</p>
+            <div class="social-links mb-3">
+                <a href="#" class="text-light mx-2"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-light mx-2"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-light mx-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-light mx-2"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Form submission handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real application, you would send the form data to a server here
+            // For this example, we'll just show a success message
+            
+            const successAlert = document.getElementById('successAlert');
+            successAlert.classList.remove('d-none');
+            
+            // Scroll to the success message
+            successAlert.scrollIntoView({ behavior: 'smooth' });
+            
+            // Reset the form
+            this.reset();
+            
+            // Hide the success message after 5 seconds
+            setTimeout(() => {
+                successAlert.classList.add('d-none');
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

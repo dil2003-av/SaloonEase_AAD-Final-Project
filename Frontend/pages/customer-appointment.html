@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Appointment - SaloonEase</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/services.css">
+<style>
+    .appointment-section { padding: 50px 0; }
+    .table-actions button { margin-right: 5px; }
+
+    .hero-section {
+    position: relative;
+    height: 400px; /* adjust as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.hero-section::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.35); /* dark overlay for readability */
+    z-index: 1;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+    
+</style>
+</head>
+<body>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="../Assets/images/Leonardo_Phoenix_10_I_want_a_logo_for_SaloonEase_with_a_light_3.jpg" alt="Logo" style="height:40px;">
+            SaloonEase
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="CustomerDashboard.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link active" href="appointment.html">Appointments</a></li>
+                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link active" href="reviews.html">Reviews</a></li>
+                <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+                <li><a class="dropdown-item text-danger" href="login.html">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section" style="background-image: url('../Assets/images/appointment.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <div class="container text-center text-white">
+        <h1>Book Your Salon Experience</h1>
+        <p>Professional styling, coloring, and pampering services just for you</p>
+        <a href="#appointmentForm" class="btn btn-primary mt-3">Book Now</a>
+    </div>
+</section>
+
+
+<section class="appointment-section">
+    <div class="container">
+        <h2 class="text-center mb-4">Book Your Appointment</h2>
+
+        <!-- Appointment Table -->
+        <div class="table-responsive mb-5">
+            <table class="table table-bordered table-striped" id="appointmentTable">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Email</th>
+                        <th>Service</th>
+                        <th>Price</th>
+                        <th>Booking Date</th>
+                        <th>Appointment Time</th>
+                        <th>Status</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic bookings will appear here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Appointment Form -->
+        <form id="appointmentForm">
+            <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                    <label for="customerEmail" class="form-label">Your Email</label>
+                    <input type="email" class="form-control" id="customerEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="service" class="form-label">Service</label>
+                  <select class="form-select" id="service" required>
+                    <option value="" disabled selected>Select a service</option>
+                    <option value="Haircut" data-price="1500">Haircut</option>
+                    <option value="Hair Coloring" data-price="4500">Bridal</option>
+                    <option value="Facial" data-price="2500">Facial</option>
+                    <option value="Manicure" data-price="2000">Manicure</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="price" class="form-label">Price (LKR)</label>
+                  <input type="number" class="form-control" id="price" placeholder="Enter or auto-filled price" required>
+                </div>
+            </div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                    <label for="bookingDate" class="form-label">Booking Date</label>
+                    <input type="date" class="form-control" id="bookingDate" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="appointmentTime" class="form-label">Appointment Time</label>
+                    <input type="time" class="form-control" id="appointmentTime" required>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select class="form-select" id="status">
+                    <option value="Pending" selected>Pending</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="notes" class="form-label">Notes</label>
+                <textarea class="form-control" id="notes" rows="2" placeholder="Any notes..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit Booking</button>
+        </form>
+    </div>
+</section>
+
+<!-- Edit Appointment Modal -->
+<div class="modal fade" id="editAppointmentModal" tabindex="-1" aria-labelledby="editAppointmentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="editAppointmentForm">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editAppointmentModalLabel">Edit Appointment</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="editCustomerEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="editCustomerEmail" required>
+          </div>
+          <div class="mb-3">
+            <label for="editService" class="form-label">Service</label>
+            <input type="text" class="form-control" id="editService" readonly>
+          </div>
+          <div class="mb-3">
+            <label for="editPrice" class="form-label">Price</label>
+            <input type="number" class="form-control" id="editPrice" required>
+          </div>
+          <div class="mb-3">
+            <label for="editBookingDate" class="form-label">Booking Date</label>
+            <input type="date" class="form-control" id="editBookingDate" required>
+          </div>
+          <div class="mb-3">
+            <label for="editAppointmentTime" class="form-label">Appointment Time</label>
+            <input type="time" class="form-control" id="editAppointmentTime" required>
+          </div>
+          <div class="mb-3">
+            <label for="editStatus" class="form-label">Status</label>
+            <select class="form-select" id="editStatus">
+              <option value="Pending">Pending</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="editNotes" class="form-label">Notes</label>
+            <textarea class="form-control" id="editNotes" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+<script src="../js/customer-appointmnet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>

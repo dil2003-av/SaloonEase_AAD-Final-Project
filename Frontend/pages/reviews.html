@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Reviews - SaloonEase</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/reviews.css">
+</head>
+<body>
+<!-- Floating Background Elements -->
+<div class="floating-elements">
+    <div class="floating-star"><i class="fas fa-star"></i></div>
+    <div class="floating-star"><i class="fas fa-star"></i></div>
+    <div class="floating-star"><i class="fas fa-star"></i></div>
+    <div class="floating-star"><i class="fas fa-star"></i></div>
+    <div class="floating-star"><i class="fas fa-star"></i></div>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="../Assets/images/Leonardo_Phoenix_10_I_want_a_logo_for_SaloonEase_with_a_light_3.jpg" alt="Logo" style="height:40px;">
+            SaloonEase
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="CustomerDashboard.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link active" href="customer-appointment.html">Appointments</a></li>
+                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link active" href="reviews.html">Reviews</a></li>
+                <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+                <li><a class="dropdown-item text-danger" href="login.html">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section" style="background-image: url('../Assets/images/Leonardo_Phoenix_10_I_want_a_background_image_for_my_saloon_na_2.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <div class="container text-center text-white">
+        <h1>Review Your Salon Experience</h1>
+        <p><b>Hear from our happy clients! Real stories, real experiences—see why SaloonEase is the place for style and pampering.</b></p>
+
+    </div>
+</section>
+
+<section class="reviews-section">
+    <div class="container">
+        <!-- Page Title -->
+        <div class="page-title">
+            <h2>Customer Reviews</h2>
+            <p>See what our valued customers say about our services</p>
+        </div>
+
+        <!-- Review Stats -->
+        <div class="stats-container">
+            <div class="row">
+                <div class="col-md-3 stat-item">
+                    <div class="stat-number" id="totalReviews">127</div>
+                    <div>Total Reviews</div>
+                </div>
+                <div class="col-md-3 stat-item">
+                    <div class="stat-number">4.8</div>
+                    <div>Average Rating</div>
+                </div>
+                <div class="col-md-3 stat-item">
+                    <div class="stat-number">98%</div>
+                    <div>Satisfaction Rate</div>
+                </div>
+                <div class="col-md-3 stat-item">
+                    <div class="stat-number">89</div>
+                    <div>5-Star Reviews</div>
+                </div>
+            </div>
+        </div>
+
+       
+       <!-- Write a Review Form -->
+<div class="review-form-container">
+    <h3 class="mb-4"><i class="fas fa-edit text-primary"></i> Write a Review</h3>
+    <form id="reviewForm">
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <label for="customerName" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="customerName" placeholder="Enter your name" required>
+            </div>
+            <div class="col-md-6">
+                <label for="customerEmail" class="form-label">Your Email</label>
+                <input type="email" class="form-control" id="customerEmail" placeholder="Enter your email" required>
+            </div>
+        </div>
+
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <label for="serviceReviewed" class="form-label">Service Reviewed</label>
+                <select class="form-select" id="serviceReviewed" required>
+                    <option value="" disabled selected>Select service</option>
+                    <option value="Styling">Styling</option>
+                    <option value="Hair Coloring">Hair Coloring</option>
+                    <option value="Facial">Facial</option>
+                    <option value="Manicure">Manicure</option>
+                    <option value="Overall Experience">Overall Experience</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label for="ratingSelect" class="form-label">Rating</label>
+                <select class="form-select" id="ratingSelect" required>
+                    <option value="" disabled selected>Select rating</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="reviewText" class="form-label">Your Review</label>
+            <textarea class="form-control" id="reviewText" rows="4" placeholder="Share your experience with us..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-paper-plane"></i> Submit Review
+        </button>
+    </form>
+</div>
+
+
+        <!-- Reviews Management Table -->
+        <div class="review-form-container">
+            <h3 class="mb-4"><i class="fas fa-table text-primary"></i> Reviews Management</h3>
+            <div class="table-responsive">
+                <table class="table table-hover" id="reviewsTable">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Id</th>
+                            <th>CustomerEmail</th>
+                            <th>Service</th>
+                            <th>Rating</th>
+                            <th>Review</th>
+                            <th>status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reviewsTableBody">
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="reviewer-avatar me-2" style="width: 30px; height: 30px; font-size: 0.8em;">SJ</div>
+                                    <div>
+                                        <div class="fw-bold">Sarah Johnson</div>
+                                        <small class="text-muted">sarah.j@email.com</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><span class="badge bg-primary">Hair Coloring</span></td>
+                            <td>
+                                <div class="star-rating" style="color: #ffc107; font-size: 0.9em;">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </td>
+                            <td class="review-preview">Absolutely amazing experience! The staff was professional...</td>
+                            
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary view-btn me-1" title="View Full Review">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-warning edit-review-btn me-1" title="Edit Review">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger delete-review-btn" title="Delete Review">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+
+                     
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Rating Filters -->
+        <div class="rating-filter">
+            <h4 class="text-white mb-3">Filter by Rating:</h4>
+            <button class="btn filter-btn active" data-filter="all">All Reviews</button>
+            <button class="btn filter-btn" data-filter="5">5 Stars</button>
+            <button class="btn filter-btn" data-filter="4">4 Stars</button>
+            <button class="btn filter-btn" data-filter="3">3 Stars</button>
+            <button class="btn filter-btn" data-filter="2">2 Stars</button>
+            <button class="btn filter-btn" data-filter="1">1 Star</button>
+        </div>
+
+        <!-- Reviews Display -->
+        <div id="reviewsContainer">
+            <!-- Sample Reviews -->
+            <div class="review-card" data-rating="5">
+                <div class="review-header">
+                    <div class="reviewer-avatar">SJ</div>
+                    <div class="reviewer-info">
+                        <h5>Sarah Johnson</h5>
+                    </div>
+                </div>
+                <div class="star-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="service-tag">Hair Coloring</div>
+                <div class="review-text">
+                    Absolutely amazing experience! The staff was professional and friendly. My hair color turned out exactly as I envisioned. The salon has a great ambiance and I felt so relaxed throughout the process.
+                </div>
+            </div>
+
+            <div class="review-card" data-rating="5">
+                <div class="review-header">
+                    <div class="reviewer-avatar">MR</div>
+                    <div class="reviewer-info">
+                        <h5>Michael Rodriguez</h5>
+                        <div class="review-date">December 12, 2024</div>
+                    </div>
+                </div>
+                <div class="star-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="service-tag">Styling</div>
+                <div class="review-text">
+                    Best haircut I've had in years! The stylist really listened to what I wanted and gave great suggestions. Very clean facility and reasonable prices. Definitely coming back!
+                </div>
+            </div>
+
+            <div class="review-card" data-rating="4">
+                <div class="review-header">
+                    <div class="reviewer-avatar">EP</div>
+                    <div class="reviewer-info">
+                        <h5>Emily Parker</h5>
+                        <div class="review-date">December 10, 2024</div>
+                    </div>
+                </div>
+                <div class="star-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="service-tag">Facial</div>
+                <div class="service-tag">Manicure</div>
+                <div class="review-text">
+                    Great service overall! The facial was very relaxing and my skin feels amazing. The manicure was well done too. Only small complaint is the wait time was a bit longer than expected, but worth it in the end.
+                </div>
+            </div>
+
+        
+        <!-- Load More Button -->
+        <div class="text-center mt-4">
+            <button class="btn btn-primary" id="loadMoreBtn">
+                <i class="fas fa-plus"></i> Load More Reviews
+            </button>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="../js/reviews.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>

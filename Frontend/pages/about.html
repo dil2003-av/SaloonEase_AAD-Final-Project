@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - SaloonEase</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/services.css">
+</head>
+<style>
+
+  /* Reduce space between sections */
+.section-padding {
+  padding: 60px 0; /* reduce from default large spacing */
+}
+
+/* Our Story image smaller */
+.our-story-img {
+  max-width: 80%;  /* reduce size */
+  margin: auto;
+  display: block;
+}
+
+/* Make fonts bigger across the page */
+body {
+  font-size: 1.1rem;   /* base font size increase */
+  line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.2rem; }
+h3 { font-size: 1.8rem; }
+h4 { font-size: 1.4rem; }
+
+/* Team section - smaller images */
+.team-card img {
+  height: 250px;       /* control fixed height */
+  object-fit: cover;   /* maintain aspect ratio */
+  border-radius: 10px;
+}
+
+  .mission-card, .vision-card {
+  background: #fff;
+  border-radius: 15px;
+  padding: 40px 25px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.mission-card:hover, .vision-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+.icon-large {
+  font-size: 3rem;
+}
+
+.stats-section {
+  position: relative;
+  background: url('../Assets/images/stats-bg.jp') no-repeat center center/cover;
+  color: #fff;
+}
+
+.stats-section::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); /* dark overlay to make numbers visible */
+  z-index: 1;
+}
+
+.stats-section .container {
+  position: relative;
+  z-index: 2; /* bring text above overlay */
+}
+
+.stat-item {
+  text-align: center;
+  padding: 30px 15px;
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 700;
+  display: block;
+}
+
+.stat-label {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.timeline {
+  position: relative;
+  margin: 0 auto;
+  padding: 20px 0;
+  max-width: 900px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 3px;
+  background: #4a90e2; /* blue line */
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  width: 50%;
+  padding: 20px 40px;
+}
+
+.timeline-item.left {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-item.right {
+  left: 50%;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 4px solid #4a90e2;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-item.left::before {
+  right: -10px;
+}
+
+.timeline-item.right::before {
+  left: -10px;
+}
+
+.timeline-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 2;
+}
+
+.timeline-content h4 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 20px;
+  }
+  .timeline-item {
+    width: 100%;
+    padding-left: 60px;
+    padding-right: 25px;
+    text-align: left !important;
+  }
+  .timeline-item::before {
+    left: 20px;
+  }
+
+  
+}
+
+
+
+</style>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="../Assets/images/Leonardo_Phoenix_10_I_want_a_logo_for_SaloonEase_with_a_light_3.jpg" alt="Logo" style="height:40px;">
+        SaloonEase
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+          <li class="nav-item"><a class="nav-link" href="CustomerDashboard.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="about.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="customer-appointment.html">Appointments</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="reviews.html">Reviews</a></li>
+          <li class="nav-item"><a class="nav-link" href="profile.html">Profile</a></li>
+          <li><a class="dropdown-item text-danger" href="login.html">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section" style="
+      background: url('../Assets/images/about.jpg') no-repeat center center/cover;
+      padding: 120px 0;
+      position: relative;
+      color: #fff;
+  ">
+    <div style="
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 1;
+    "></div>
+
+    <div class="container" style="position: relative; z-index: 2;">
+      <div class="row align-items-center">
+        <div class="col-lg-8 mx-auto text-center">
+          <h1 class="fw-bold">About SaloonEase</h1>
+          <p class="lead">Transforming Beauty, One Client at a Time</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story Section -->
+  <section class="section-padding py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <img src="../Assets/images/hero.jpg" class="img-fluid rounded shadow-lg" alt="Our Story">
+        </div>
+        <div class="col-lg-6">
+          <h2 class="mb-4">Our Story</h2>
+          <p class="lead mb-4">
+            At <strong>SaloonEase</strong>, we believe that beauty should be simple, elegant, and effortless. 
+            Founded with a passion for making every individual feel confident and radiant, we have grown 
+            into a trusted name in the beauty industry.
+          </p>
+          <p class="mb-4">
+            Our journey began with a simple vision: to create a space where beauty meets comfort, 
+            where technology enhances service, and where every client leaves feeling their absolute best. 
+            With years of experience and dedication to staying ahead of beauty trends, we continue to 
+            evolve while maintaining our core values of excellence and personalized care.
+          </p>
+          <div class="row">
+            <div class="col-6">
+              <h5><i class="fas fa-award text-primary me-2"></i>Premium Quality</h5>
+              <p>Using only the finest products and techniques</p>
+            </div>
+            <div class="col-6">
+              <h5><i class="fas fa-heart text-danger me-2"></i>Personalized Care</h5>
+              <p>Tailored services for every individual's needs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision Section -->
+<section class="mission-vision section-padding">
+  <div class="container">
+    <div class="row g-4">
+      
+      <!-- Mission -->
+      <div class="col-lg-6">
+        <div class="mission-card text-center p-4 h-100">
+          <i class="fas fa-bullseye icon-large text-primary mb-3"></i>
+          <h3 class="fw-bold mb-3">Our Mission</h3>
+          <p class="mb-0">
+            To provide exceptional beauty services that enhance natural beauty 
+            while creating a relaxing and memorable experience for every client. 
+            We are committed to using the latest techniques, premium products, 
+            and maintaining the highest standards of hygiene and professionalism.
+          </p>
+        </div>
+      </div>
+
+      <!-- Vision -->
+      <div class="col-lg-6">
+        <div class="vision-card text-center p-4 h-100">
+          <i class="fas fa-eye icon-large text-success mb-3"></i>
+          <h3 class="fw-bold mb-3">Our Vision</h3>
+          <p class="mb-0">
+            To become the leading beauty destination, known for innovation, 
+            excellence, and customer satisfaction. We envision a future 
+            where beauty services are accessible, convenient, and 
+            transformative, helping our clients express their unique 
+            style and confidence.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<section class="stats-section section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-6">
+        <div class="stat-item">
+          <span class="stat-number">5000+</span>
+          <span class="stat-label">Happy Clients</span>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="stat-item">
+          <span class="stat-number">15+</span>
+          <span class="stat-label">Expert Stylists</span>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="stat-item">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Services Offered</span>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="stat-item">
+          <span class="stat-number">8+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Our Journey Timeline -->
+<section class="section-padding py-5">
+  <div class="container">
+    <h2 class="text-center mb-5">Our Journey</h2>
+    <div class="timeline">
+
+      <!-- 2016 -->
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <h4>2016 - The Beginning</h4>
+          <p>SaloonEase was founded with a small team of passionate beauty professionals, starting with basic salon services in a cozy location.</p>
+        </div>
+      </div>
+
+      <!-- 2018 -->
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <h4>2018 - Expansion</h4>
+          <p>Added spa services and bridal packages, expanding our team and moving to a larger, more modern facility.</p>
+        </div>
+      </div>
+
+      <!-- 2020 -->
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <h4>2020 - Digital Transformation</h4>
+          <p>Launched our online booking system and digital customer dashboard, making beauty services more accessible during challenging times.</p>
+        </div>
+      </div>
+
+      <!-- 2023 -->
+      <div class="timeline-item right">
+        <div class="timeline-content">
+          <h4>2023 - Premium Services</h4>
+          <p>Introduced advanced treatments, luxury spa experiences, and became a certified training center for beauty professionals.</p>
+        </div>
+      </div>
+
+      <!-- 2025 -->
+      <div class="timeline-item left">
+        <div class="timeline-content">
+          <h4>2025 - Future Forward</h4>
+          <p>Continuing to innovate with AI-powered beauty consultations and sustainable beauty practices, leading the industry into the future.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- Our Team Section -->
+  <section class="section-padding py-5" style="background-color: #f8f9fa;">
+    <div class="container">
+      <h2 class="text-center mb-5">Meet Our Expert Team</h2>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card team-card">
+            <img src="../Assets/images/sarah jonson.webp" class="card-img-top" alt="Team Member">
+            <div class="card-body text-center">
+              <h5 class="card-title">Sarah Johnson</h5>
+              <p class="text-muted">Head Stylist & Manager</p>
+              <p class="card-text">With 10+ years of experience, Sarah leads our team with expertise in cutting-edge hair trends and color techniques.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card team-card">
+            <img src="../Assets/images/maya patel.webp" class="card-img-top" alt="Team Member">
+            <div class="card-body text-center">
+              <h5 class="card-title">Maya Patel</h5>
+              <p class="text-muted">Senior Beautician</p>
+              <p class="card-text">Specializing in skincare and facial treatments, Maya brings a gentle touch and extensive knowledge in beauty therapy.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="card team-card">
+            <img src="../Assets/images/priya silva.webp" class="card-img-top" alt="Team Member">
+            <div class="card-body text-center">
+              <h5 class="card-title">Priya Silva</h5>
+              <p class="text-muted">Bridal Specialist</p>
+              <p class="card-text">Our bridal expert who has made countless brides look stunning on their special day with her artistic vision and attention to detail.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="section-padding py-5">
+    <div class="container">
+      <h2 class="text-center mb-5">Why Choose SaloonEase?</h2>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="text-center">
+            <i class="fas fa-star fa-3x text-warning mb-3"></i>
+            <h4>Expert Professionals</h4>
+            <p>Our certified stylists and beauticians stay updated with the latest trends and techniques through continuous training.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="text-center">
+            <i class="fas fa-leaf fa-3x text-success mb-3"></i>
+            <h4>Premium Products</h4>
+            <p>We use only high-quality, eco-friendly products from trusted brands to ensure the best results for your hair and skin.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="text-center">
+            <i class="fas fa-clock fa-3x text-info mb-3"></i>
+            <h4>Convenient Booking</h4>
+            <p>Our easy-to-use online booking system allows you to schedule appointments at your convenience, 24/7.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="text-center">
+            <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+            <h4>Hygiene Standards</h4>
+            <p>We maintain the highest standards of cleanliness and hygiene, ensuring a safe and comfortable environment for all clients.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="text-center">
+            <i class="fas fa-smile fa-3x text-danger mb-3"></i>
+            <h4>Personalized Service</h4>
+            <p>Every client receives customized treatment based on their individual needs, preferences, and beauty goals.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+          <div class="text-center">
+            <i class="fas fa-money-bill-wave fa-3x text-secondary mb-3"></i>
+            <h4>Competitive Pricing</h4>
+            <p>Quality beauty services at affordable prices, with regular promotions and loyalty rewards for our valued clients.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="stats-section section-padding py-5 text-center text-white" style="background-color:#2C1810;">
+    <div class="container">
+      <h2 class="mb-4">Ready to Experience the SaloonEase Difference?</h2>
+      <p class="lead mb-4">Book your appointment today and discover why thousands of clients trust us with their beauty needs.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-4 text-center" style="background-color: #2C1810; color: #fff;">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="mb-0">&copy; 2025 SaloonEase. All Rights Reserved.</p>
+        </div>
+        <div class="col-md-6">
+          <div class="social-links">
+            <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

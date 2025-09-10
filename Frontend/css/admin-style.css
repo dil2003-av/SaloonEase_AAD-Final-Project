@@ -1,0 +1,40 @@
+/* Sidebar & Layout */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f9fa; }
+.sidebar { background: linear-gradient(180deg, #2c3e50, #34495e); color: #fff; position: fixed; height: 100vh; overflow-y: auto; }
+.sidebar-logo { text-align: center; margin-bottom: 30px; padding: 20px 0; }
+.sidebar-logo .logo-circle { width: 60px; height: 60px; background: linear-gradient(45deg, #ff99b6, #ff4d6d); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-size: 24px; }
+.sidebar-logo span { font-size: 1.3rem; font-weight: 700; color: #fff; }
+.sidebar .nav-link { color: #bdc3c7; font-weight: 500; border-radius: 8px; margin: 5px 15px; padding: 12px 20px; display: flex; align-items: center; transition: all 0.3s ease; }
+.sidebar .nav-link.active { background: linear-gradient(45deg, #ff99b6, #ff4d6d); color: #fff !important; font-weight: 600; box-shadow: 0 4px 15px rgba(255,77,109,0.3); }
+.sidebar .nav-link:hover { background-color: rgba(255,255,255,0.1); color: #fff; transform: translateX(5px); }
+.sidebar .nav-link i { width: 20px; margin-right: 12px; }
+.content { margin-left: 280px; padding: 30px; min-height: 100vh; }
+
+/* Cards */
+.stats-card { background: #fff; border-radius: 15px; padding: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.stats-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(45deg, #ff99b6, #ff4d6d); }
+.stats-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+.stats-icon { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 15px; color: white; }
+.stats-icon.appointments { background: linear-gradient(45deg, #ff6b6b, #ee5a24); }
+.stats-icon.revenue { background: linear-gradient(45deg, #00d2d3, #54a0ff); }
+.stats-icon.pending { background: linear-gradient(45deg, #feca57, #ff9ff3); }
+.stats-icon.customers { background: linear-gradient(45deg, #48dbfb, #0abde3); }
+.stats-number { font-size: 2.5rem; font-weight: 700; color: #2c3e50; margin-bottom: 5px; }
+.stats-label { color: #7f8c8d; font-size: 0.9rem; margin-bottom: 10px; }
+.stats-change { font-size: 0.85rem; display: flex; align-items: center; gap: 5px; }
+.stats-change.positive { color: #27ae60; }
+.stats-change.negative { color: #e74c3c; }
+
+/* Tables */
+.table { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.table thead { background: linear-gradient(90deg, #2c3e50, #34495e); color: #fff; }
+.table-hover tbody tr:hover { background-color: rgba(255, 153, 182, 0.05); transform: scale(1.01); transition: all 0.2s ease; }
+.btn-primary { background: linear-gradient(45deg, #ff99b6, #ff4d6d); border: none; box-shadow: 0 4px 15px rgba(255,77,109,0.3); transition: all 0.3s ease; }
+.btn-primary:hover { background: linear-gradient(45deg, #ff4d6d, #ff99b6); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255,77,109,0.4); }
+
+/* Modals */
+.modal-header { border-bottom: none; }
+.modal-footer { border-top: none; }
+
+@media (max-width: 768px) { .content { margin-left: 0; padding: 15px; } .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; } .sidebar.show { transform: translateX(0); } }
