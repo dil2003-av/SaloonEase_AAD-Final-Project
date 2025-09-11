@@ -15,8 +15,34 @@
     .table-hover tbody tr:hover {
       background-color: #f1f1f1;
     }
-    
-    
+  .table-light th {
+    color: #000;       
+    background-color: #f8f9fa; 
+  }
+
+  .table-hover tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  /* Increase table row height */
+  table.table tbody tr {
+    height: 60px; /* Adjust as needed */
+  }
+
+  table.table tbody tr td {
+    vertical-align: middle; /* Center content vertically */
+    padding: 12px 8px; /* Adjust padding */
+  }
+
+  /* Optional: spacing between rows */
+  table.table tbody tr + tr {
+    border-top: 2px solid #dee2e6;
+  }
+
+  /* Space between action buttons */
+  table.table tbody tr td .btn {
+    margin-right: 5px;
+  }    
   </style>
 </head>
 <body>
@@ -35,7 +61,7 @@
             <li><a href="admin-profile.html" class="nav-link"><i class="fas fa-user-circle"></i> Profile</a></li>
     <li><a href="admin-settings.html" class="nav-link"><i class="fas fa-cog"></i> Settings</a></li>
     <li><a href="admin-reports.html" class="nav-link"><i class="fas fa-chart-line"></i> Reports</a></li>
-    <li><a href="admin-users.html" class="nav-link"><i class="fas fa-users"></i>Reviews</a></li>
+    <li><a href="admin-reviews.html" class="nav-link"><i class="fas fa-users"></i>Reviews</a></li>
     <li class="mt-4"><a href="login.html" class="nav-link text-danger"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
       </ul>
     </div>

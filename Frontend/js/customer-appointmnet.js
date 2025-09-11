@@ -46,6 +46,11 @@ async function fetchAppointments() {
                     <td>
                         <button class="btn btn-sm btn-warning" onclick="editAppointment(${app.id})">Edit</button>
                         <button class="btn btn-sm btn-danger" onclick="deleteAppointment(${app.id})">Delete</button>
+                        ${
+                            app.status === "Confirmed" 
+                            ? `<button class="btn btn-sm btn-success" onclick="payNow(${app.id}, ${app.price})">Pay Now</button>` 
+                            : ""
+                        }
                     </td>
                 </tr>
             `;
@@ -55,6 +60,45 @@ async function fetchAppointments() {
         Swal.fire("Error!", "Failed to load appointments. Check console for details.", "error");
     }
 }
+
+// PayNow function
+window.payNow = (id, amount) => {
+    // You can integrate PayHere or any other payment here
+    // Example: redirect to PayHere checkout page
+    const data = {
+        merchant_id: "YOUR_MERCHANT_ID",
+        return_url: "http://localhost:5500/customer/appointment.html",
+        cancel_url: "http://localhost:5500/customer/appointment.html",
+        notify_url: "http://localhost:8080/api/v1/payments/notify",
+        order_id: id,
+        items: `Appointment ${id}`,
+        currency: "LKR",
+        amount: amount,
+        first_name: "Customer",
+        last_name: "",
+        email: "customer@example.com",
+        phone: "0771234567",
+        address: "",
+        city: "",
+        country: "Sri Lanka"
+    };
+
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "https://sandbox.payhere.lk/pay/checkout";
+
+    for (let key in data) {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = data[key];
+        form.appendChild(input);
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+};
+
 
 // Create new appointment
 appointmentForm.onsubmit = async (e) => {

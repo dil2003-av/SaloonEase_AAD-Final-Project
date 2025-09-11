@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard</title>
-  <style>/* Upcoming Appointments Section */
+  <style>
 .dashboard-section {
   background: #fff;
   border-radius: 15px;
@@ -116,8 +116,8 @@
       <li><a href="admin-appointments.html" class="nav-link"><i class="fas fa-calendar-check"></i> Appointments</a></li>
       <li><a href="admin-profile.html" class="nav-link"><i class="fas fa-user-circle"></i> Profile</a></li>
       <li><a href="admin-settings.html" class="nav-link"><i class="fas fa-cog"></i> Settings</a></li>
-          <li><a href="admin-reports.html" class="nav-link"><i class="fas fa-chart-line"></i> Reports</a></li>
-    <li><a href="admin-reviews.html" class="nav-link"><i class="fas fa-users"></i>Reviews</a></li>
+      <li><a href="admin-reports.html" class="nav-link"><i class="fas fa-chart-line"></i> Reports</a></li>
+      <li><a href="admin-reviews.html" class="nav-link"><i class="fas fa-users"></i>Reviews</a></li>
       <li class="mt-4"><a href="login.html" class="nav-link text-danger"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
     </ul>
   </div>
@@ -125,9 +125,134 @@
   <!-- Main Content -->
   <div class="content">
     <h1>Welcome, Admin Dashboard</h1>
-   <!-- Dashboard Section --> <section id="dashboard"> <div class="admin-hero"> <h1><i class="fas fa-crown" style="color: #ffd700; margin-right: 15px;"></i>Welcome, Admin!</h1> <p class="lead">Manage your salon with style and efficiency</p> </div> <!-- Statistics Cards --> <div class="row mb-4"> <div class="col-xl-3 col-lg-6 col-md-6 mb-4"> <div class="stats-card"> <div class="stats-icon appointments"><i class="fas fa-calendar-day"></i></div> <div class="stats-number" id="todayAppointments">18</div> <div class="stats-label">TODAY'S APPOINTMENTS</div> <div class="stats-change positive"><i class="fas fa-arrow-up"></i><span>12% vs last week</span></div> </div> </div> <div class="col-xl-3 col-lg-6 col-md-6 mb-4"> <div class="stats-card"> <div class="stats-icon revenue"><i class="fas fa-dollar-sign"></i></div> <div class="stats-number" id="todayRevenue">$942</div> <div class="stats-label">REVENUE (TODAY)</div> <div class="stats-change positive"><i class="fas fa-arrow-up"></i><span>8.3% vs last week</span></div> </div> </div> <div class="col-xl-3 col-lg-6 col-md-6 mb-4"> <div class="stats-card"> <div class="stats-icon pending"><i class="fas fa-clock"></i></div> <div class="stats-number" id="pendingApprovals">7</div> <div class="stats-label">PENDING APPROVALS</div> <div class="stats-change positive"><i class="fas fa-arrow-up"></i><span>3 since yesterday</span></div> </div> </div> <div class="col-xl-3 col-lg-6 col-md-6 mb-4"> <div class="stats-card"> <div class="stats-icon customers"><i class="fas fa-user-plus"></i></div> <div class="stats-number" id="newCustomers">4</div> <div class="stats-label">NEW CUSTOMERS</div> <div class="stats-change negative"><i class="fas fa-arrow-down"></i><span>1 vs yesterday</span></div> </div> </div> </div> <!-- Revenue Chart <div class="dashboard-section"> <div class="section-title"><i class="fas fa-chart-line"></i> Revenue Overview</div> <canvas id="revenueChart" class="chart-container"></canvas> </div> --> <!-- Upcoming Appointments --> <div class="dashboard-section"> <div class="section-title"><i class="fas fa-calendar-check"></i> Upcoming Appointments</div> <div id="appointmentsList"> <!-- Example appointment item --> <div class="appointment-item"> <div class="appointment-customer"> <div class="customer-avatar">A</div> <div class="appointment-details"> <h6>Alice Johnson</h6> <small>Haircut</small> </div> </div> <div class="appointment-time">11:30 AM</div> <div class="appointment-status status-pending">Pending</div> </div> <div class="appointment-item"> <div class="appointment-customer"> <div class="customer-avatar">J</div> <div class="appointment-details"> <h6>John Smith</h6> <small>Massage</small> </div> </div> <div class="appointment-time">1:00 PM</div> <div class="appointment-status status-confirmed">Confirmed</div> </div> </div> </div> </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard">
+      <div class="admin-hero">
+        <h1><i class="fas fa-crown" style="color: #ffd700; margin-right: 15px;"></i>Welcome, Admin!</h1>
+        <p class="lead">Manage your salon with style and efficiency</p>
+      </div>
+
+      <!-- Statistics Cards -->
+<div class="row mb-4">
+  <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
+    <div class="stats-card">
+      <div class="stats-icon appointments"><i class="fas fa-calendar-day"></i></div>
+      <div class="stats-number" id="todayAppointments">0</div>
+      <div class="stats-label">TODAY'S APPOINTMENTS</div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
+    <div class="stats-card">
+      <div class="stats-icon revenue"><i class="fas fa-dollar-sign"></i></div>
+      <div class="stats-number" id="todayRevenue">LKR 0.00</div>
+      <div class="stats-label">REVENUE (TODAY)</div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
+    <div class="stats-card">
+      <div class="stats-icon pending"><i class="fas fa-clock"></i></div>
+      <div class="stats-number" id="pendingApprovals">0</div>
+      <div class="stats-label">PENDING APPROVALS</div>
+    </div>
+  </div>
+  <div class="col-xl-3 col-lg-6 col-md-6 mb-4">
+    <div class="stats-card">
+      <div class="stats-icon customers"><i class="fas fa-user-plus"></i></div>
+      <div class="stats-number" id="newCustomers">0</div>
+      <div class="stats-label">NEW CUSTOMERS</div>
+    </div>
+  </div>
+</div>
+
+      <!-- Upcoming Appointments -->
+      <div class="dashboard-section">
+        <div class="section-title"><i class="fas fa-calendar-check"></i> Upcoming Appointments</div>
+        <div id="appointmentsList"></div>
+      </div>
+    </section>
   </div>
 
-<script src="../js/salon-chatbot.js"></script>
+<script>
+const API_BASE_URL = "http://localhost:8080/api/v1/appointments";
+
+// Get headers with token
+function getHeaders() {
+  const token = localStorage.getItem("token");
+  return {
+    "Content-Type": "application/json",
+    ...(token && { "Authorization": `Bearer ${token}` })
+  };
+}
+
+// Load dashboard stats
+async function loadDashboardStats() {
+  try {
+    const res = await fetch(`${API_BASE_URL}/getall`, {
+      method: "GET",
+      headers: getHeaders()
+    });
+
+    if (res.status === 403) {
+      Swal.fire("Access Denied", "You are not authorized to view this data.", "error");
+      return;
+    }
+
+    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+
+    const result = await res.json();
+    const appointments = result.data || [];
+
+    // Calculate counts
+    const today = new Date().toISOString().split("T")[0];
+    const todayAppointments = appointments.filter(a => a.bookingDate === today).length;
+    const todayRevenue = appointments
+      .filter(a => a.bookingDate === today && a.status === "Confirmed")
+      .reduce((sum, a) => sum + (a.price || 0), 0);
+    const pendingApprovals = appointments.filter(a => a.status === "Pending").length;
+    const newCustomers = new Set(appointments.map(a => a.userEmail)).size; // unique customers
+
+    // Update dashboard
+    document.getElementById("todayAppointments").innerText = todayAppointments;
+    document.getElementById("todayRevenue").innerText = "LKR " + todayRevenue.toFixed(2);
+    document.getElementById("pendingApprovals").innerText = pendingApprovals;
+    document.getElementById("newCustomers").innerText = newCustomers;
+
+    // Render upcoming appointments
+    const listEl = document.getElementById("appointmentsList");
+    listEl.innerHTML = "";
+    appointments
+      .filter(a => a.status !== "Cancelled")
+      .slice(0, 5) // show only next 5
+      .forEach(app => {
+        const div = document.createElement("div");
+        div.className = "appointment-item";
+        div.innerHTML = `
+          <div class="appointment-customer">
+            <div class="customer-avatar">${app.userEmail.charAt(0).toUpperCase()}</div>
+            <div class="appointment-details">
+              <h6>${app.userEmail}</h6>
+              <small>${app.serviceName}</small>
+            </div>
+          </div>
+          <div class="appointment-time">${app.appointmentTime}</div>
+          <div class="appointment-status status-${app.status.toLowerCase()}">${app.status}</div>
+        `;
+        listEl.appendChild(div);
+      });
+
+  } catch (err) {
+    console.error("Error loading dashboard stats:", err);
+    Swal.fire("Error", "Failed to load dashboard stats.", "error");
+  }
+  
+}
+
+// Run on page load
+window.onload = loadDashboardStats;
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 </html>

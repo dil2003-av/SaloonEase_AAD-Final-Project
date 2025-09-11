@@ -11,6 +11,71 @@ body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:
 .sidebar .nav-link i { width: 20px; margin-right: 12px; }
 .content { margin-left: 280px; padding: 30px; min-height: 100vh; }
 
+
+/* Status Button */
+.table-actions .btn-outline-success {
+  background: linear-gradient(45deg, #28a745, #85e085);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.table-actions .btn-outline-success:hover {
+  background: linear-gradient(45deg, #218838, #6bd36b);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  color: #fff;
+}
+
+/* Delete Button */
+.table-actions .btn-outline-danger {
+  background: linear-gradient(45deg, #ff4d4f, #ff7f7f);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+.table-actions .btn-outline-danger:hover {
+  background: linear-gradient(45deg, #d9363e, #ff5c5c);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  color: #fff;
+}
+
+/* Status Badge (Outlined Version) */
+.status-badge {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-weight: 500;
+  display: inline-block;
+  min-width: 80px;
+  text-align: center;
+  background-color: transparent; /* transparent background */
+  border: 2px solid; /* border will define the color */
+  color: inherit;     /* text color will match border */
+}
+
+/* Different status colors */
+.status-pending {
+  border-color: #feca57;
+  color: #feca57;
+}
+
+.status-confirmed {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.status-cancelled {
+  border-color: #ff4d4f;
+  color: #ff4d4f;
+}
+
+
 /* Cards */
 .stats-card { background: #fff; border-radius: 15px; padding: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); position: relative; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .stats-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(45deg, #ff99b6, #ff4d6d); }

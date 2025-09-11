@@ -12,32 +12,60 @@
     .table-actions button { margin-right: 5px; }
 
     .hero-section {
-    position: relative;
-    height: 400px; /* adjust as needed */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        position: relative;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    }
+
+    .hero-section::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0, 0, 0, 0.35);
+        z-index: 1;
+    }
+
+    .hero-section .container {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Table styling */
+    #appointmentTable tbody tr {
+        height: 60px;
+    }
+
+    #appointmentTable tbody tr td {
+        vertical-align: middle;
+        padding: 12px 8px;
+    }
+
+    #appointmentTable tbody tr + tr {
+        border-top: 2px solid #dee2e6;
+    }
+
+    #appointmentTable tbody tr td .btn {
+        margin-right: 5px;
+    }
+
+    /* Add spacing below form */
+    #appointmentForm {
+        margin-bottom: 50px;
+    }
+    #editAppointmentModal .modal-body {
+    max-height: 70vh; /* adjust height */
+    overflow-y: auto; /* scroll if content exceeds */
+    padding: 2rem;
 }
 
-.hero-section::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.35); /* dark overlay for readability */
-    z-index: 1;
-}
-
-.hero-section .container {
-    position: relative;
-    z-index: 2;
-}
-
-    
 </style>
 </head>
 <body>
+
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
     <div class="container">
@@ -73,33 +101,11 @@
     </div>
 </section>
 
-
 <section class="appointment-section">
     <div class="container">
         <h2 class="text-center mb-4">Book Your Appointment</h2>
 
-        <!-- Appointment Table -->
-        <div class="table-responsive mb-5">
-            <table class="table table-bordered table-striped" id="appointmentTable">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Email</th>
-                        <th>Service</th>
-                        <th>Price</th>
-                        <th>Booking Date</th>
-                        <th>Appointment Time</th>
-                        <th>Status</th>
-                        <th>Notes</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Dynamic bookings will appear here -->
-                </tbody>
-            </table>
-        </div>
-
-        <!-- Appointment Form -->
+        <!-- Appointment Form FIRST -->
         <form id="appointmentForm">
             <div class="row g-3 mb-3">
                 <div class="col-md-6">
@@ -107,18 +113,18 @@
                     <input type="email" class="form-control" id="customerEmail" placeholder="Enter your email" required>
                 </div>
                 <div class="col-md-6">
-                  <label for="service" class="form-label">Service</label>
-                  <select class="form-select" id="service" required>
-                    <option value="" disabled selected>Select a service</option>
-                    <option value="Haircut" data-price="1500">Haircut</option>
-                    <option value="Hair Coloring" data-price="4500">Bridal</option>
-                    <option value="Facial" data-price="2500">Facial</option>
-                    <option value="Manicure" data-price="2000">Manicure</option>
-                  </select>
+                    <label for="service" class="form-label">Service</label>
+                    <select class="form-select" id="service" required>
+                        <option value="" disabled selected>Select a service</option>
+                        <option value="Haircut" data-price="1500">Haircut</option>
+                        <option value="Hair Coloring" data-price="4500">Bridal</option>
+                        <option value="Facial" data-price="2500">Facial</option>
+                        <option value="Manicure" data-price="2000">Manicure</option>
+                    </select>
                 </div>
                 <div class="col-md-6">
-                  <label for="price" class="form-label">Price (LKR)</label>
-                  <input type="number" class="form-control" id="price" placeholder="Enter or auto-filled price" required>
+                    <label for="price" class="form-label">Price (LKR)</label>
+                    <input type="number" class="form-control" id="price" placeholder="Enter or auto-filled price" required>
                 </div>
             </div>
 
@@ -149,63 +155,65 @@
 
             <button type="submit" class="btn btn-primary">Submit Booking</button>
         </form>
+
+        <!-- THEN Appointment Table BELOW -->
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped" id="appointmentTable">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Email</th>
+                        <th>Service</th>
+                        <th>Price</th>
+                        <th>Booking Date</th>
+                        <th>Appointment Time</th>
+                        <th>Status</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic bookings will appear here -->
+                </tbody>
+            </table>
+        </div>
     </div>
 </section>
 
 <!-- Edit Appointment Modal -->
-<div class="modal fade" id="editAppointmentModal" tabindex="-1" aria-labelledby="editAppointmentModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<!-- Edit Appointment Modal -->
+<div class="modal fade" id="editAppointmentModal" tabindex="-1">
+  <div class="modal-dialog modal-lg"><!-- Added modal-lg -->
     <div class="modal-content">
       <form id="editAppointmentForm">
         <div class="modal-header">
-          <h5 class="modal-title" id="editAppointmentModalLabel">Edit Appointment</h5>
+          <h5 class="modal-title">Edit Appointment</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <div class="mb-3">
-            <label for="editCustomerEmail" class="form-label">Email</label>
-            <input type="email" class="form-control" id="editCustomerEmail" required>
-          </div>
-          <div class="mb-3">
-            <label for="editService" class="form-label">Service</label>
-            <input type="text" class="form-control" id="editService" readonly>
-          </div>
-          <div class="mb-3">
-            <label for="editPrice" class="form-label">Price</label>
-            <input type="number" class="form-control" id="editPrice" required>
-          </div>
-          <div class="mb-3">
-            <label for="editBookingDate" class="form-label">Booking Date</label>
-            <input type="date" class="form-control" id="editBookingDate" required>
-          </div>
-          <div class="mb-3">
-            <label for="editAppointmentTime" class="form-label">Appointment Time</label>
-            <input type="time" class="form-control" id="editAppointmentTime" required>
-          </div>
-          <div class="mb-3">
-            <label for="editStatus" class="form-label">Status</label>
-            <select class="form-select" id="editStatus">
-              <option value="Pending">Pending</option>
-              <option value="Confirmed">Confirmed</option>
-              <option value="Completed">Completed</option>
-            </select>
-          </div>
-          <div class="mb-3">
-            <label for="editNotes" class="form-label">Notes</label>
-            <textarea class="form-control" id="editNotes" rows="2"></textarea>
-          </div>
+          <input type="email" id="editCustomerEmail" class="form-control mb-2" placeholder="Customer Email" required>
+          <input type="text" id="editService" class="form-control mb-2" placeholder="Service Name" required>
+          <input type="number" id="editPrice" class="form-control mb-2" placeholder="Price" required>
+          <input type="date" id="editBookingDate" class="form-control mb-2" required>
+          <input type="time" id="editAppointmentTime" class="form-control mb-2" required>
+          <select id="editStatus" class="form-select mb-2" required>
+            <option value="Pending">Pending</option>
+            <option value="Confirmed">Confirmed</option>
+            <option value="Cancelled">Cancelled</option>
+          </select>
+          <textarea id="editNotes" class="form-control" placeholder="Notes"></textarea>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
           <button type="submit" class="btn btn-primary">Save Changes</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         </div>
       </form>
     </div>
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="../js/customer-appointmnet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

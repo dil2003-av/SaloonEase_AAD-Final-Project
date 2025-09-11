@@ -26,7 +26,7 @@ async function fetchAdminAppointments() {
     adminAppointmentTableBody.innerHTML = "";
     appointments.forEach(app => {
       adminAppointmentTableBody.innerHTML += `
-        <tr>
+        <tr id="appointment-${app.id}">
           <td>${app.id}</td>
           <td>${app.userEmail}</td>
           <td>${app.serviceName}</td>
@@ -35,8 +35,8 @@ async function fetchAdminAppointments() {
           <td>${app.appointmentTime}</td>
           <td><span class="status-badge status-${app.status.toLowerCase()}">${app.status}</span></td>
           <td class="table-actions">
-            <button class="btn btn-sm btn-outline-primary" onclick="changeStatus(${app.id})">
-              <i class="fas fa-edit"></i> Status
+            <button class="btn btn-sm btn-outline-success" onclick="updateStatus(${app.id})">
+              <i class="fas fa-check"></i>Status
             </button>
             <button class="btn btn-sm btn-outline-danger" onclick="deleteAppointment(${app.id})">
               <i class="fas fa-trash"></i>
@@ -50,8 +50,8 @@ async function fetchAdminAppointments() {
   }
 }
 
-// Change appointment status (Approve/Decline only)
-async function changeStatus(id) {
+// Approve or Decline appointment
+async function updateStatus(id) {
   const { value: status } = await Swal.fire({
     title: "Update Appointment Status",
     input: "select",
@@ -60,7 +60,8 @@ async function changeStatus(id) {
       Cancelled: "Decline"
     },
     inputPlaceholder: "Select status",
-    showCancelButton: true
+    showCancelButton: true,
+    confirmButtonText: "Update"
   });
 
   if (status) {
@@ -70,14 +71,26 @@ async function changeStatus(id) {
         headers: getHeaders()
       });
       if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
-      Swal.fire("Updated!", "Appointment status updated.", "success");
-      fetchAdminAppointments();
+
+      // Update only the status badge text and class
+      const badge = document.querySelector(`#appointment-${id} .status-badge`);
+      badge.textContent = status;
+      badge.className = `status-badge status-${status.toLowerCase()}`;
+
+      Swal.fire(
+        "Updated!",
+        `Appointment has been ${status === 'Confirmed' ? 'approved' : 'declined'}.`,
+        "success"
+      );
+
+      // Do NOT touch the button label
     } catch (err) {
       console.error("Error updating status:", err);
       Swal.fire("Error!", "Failed to update status.", "error");
     }
   }
 }
+
 
 // Delete appointment
 async function deleteAppointment(id) {
@@ -96,7 +109,8 @@ async function deleteAppointment(id) {
         });
         if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
         Swal.fire("Deleted!", "Appointment removed.", "success");
-        fetchAdminAppointments();
+        // Remove row instantly
+        document.getElementById(`appointment-${id}`).remove();
       } catch (err) {
         console.error("Error deleting appointment:", err);
         Swal.fire("Error!", "Failed to delete appointment.", "error");
