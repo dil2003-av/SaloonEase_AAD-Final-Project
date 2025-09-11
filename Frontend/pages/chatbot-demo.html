@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaloonEase Chatbot Demo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><i class="fas fa-cut me-2"></i>SaloonEase Chatbot Demo</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-info">
+                            <h5><i class="fas fa-info-circle me-2"></i>Chatbot Setup Complete!</h5>
+                            <p class="mb-2">Your SaloonEase chatbot has been successfully integrated into your salon website. Here's what's been set up:</p>
+                            <ul>
+                                <li><strong>Backend Integration:</strong> Connected to Ollama with gemma3:1b model</li>
+                                <li><strong>Frontend Widget:</strong> Beautiful floating chatbot widget</li>
+                                <li><strong>Pages Updated:</strong> Customer Dashboard, Admin Dashboard, Services, About, Gallery, and Appointments</li>
+                                <li><strong>Salon-Specific Context:</strong> AI assistant trained for salon services and booking assistance</li>
+                            </ul>
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <h6><i class="fas fa-exclamation-triangle me-2"></i>To start using the chatbot:</h6>
+                            <ol>
+                                <li>Make sure Ollama is running on your system: <code>ollama serve</code></li>
+                                <li>Verify the gemma3:1b model is installed: <code>ollama pull gemma3:1b</code></li>
+                                <li>Start your Spring Boot backend server</li>
+                                <li>Open any of the updated pages to see the chatbot in the bottom-right corner</li>
+                            </ol>
+                        </div>
+
+                        <div class="card mt-4">
+                            <div class="card-header">
+                                <h6><i class="fas fa-cog me-2"></i>Configuration Details</h6>
+                            </div>
+                            <div class="card-body">
+                                <code>
+                                    ollama.api.url=http://localhost:11434/api/generate<br>
+                                    ollama.model=gemma3:1b<br>
+                                    Backend API: http://localhost:8080/api/chat
+                                </code>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <h6>Sample questions your customers can ask:</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-comment text-primary me-2"></i>"What services do you offer?"</li>
+                                        <li><i class="fas fa-comment text-primary me-2"></i>"How can I book an appointment?"</li>
+                                        <li><i class="fas fa-comment text-primary me-2"></i>"What are your hair care tips?"</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-comment text-primary me-2"></i>"What's included in a facial?"</li>
+                                        <li><i class="fas fa-comment text-primary me-2"></i>"Do you offer bridal packages?"</li>
+                                        <li><i class="fas fa-comment text-primary me-2"></i>"What are your operating hours?"</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The chatbot will appear here automatically -->
+    <script src="../js/salon-chatbot-demo.js"></script>
+</body>
+</html>

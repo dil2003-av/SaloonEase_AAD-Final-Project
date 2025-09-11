@@ -50,16 +50,14 @@ async function fetchAdminAppointments() {
   }
 }
 
-// Change appointment status
+// Change appointment status (Approve/Decline only)
 async function changeStatus(id) {
   const { value: status } = await Swal.fire({
-    title: "Update Status",
+    title: "Update Appointment Status",
     input: "select",
     inputOptions: {
-      Pending: "Pending",
-      Confirmed: "Confirmed",
-      Completed: "Completed",
-      Cancelled: "Cancelled"
+      Confirmed: "Approve",
+      Cancelled: "Decline"
     },
     inputPlaceholder: "Select status",
     showCancelButton: true

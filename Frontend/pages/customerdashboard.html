@@ -9,50 +9,8 @@
   <link rel="stylesheet" href="../css/customerdashboard.css">
 </head>
 <body>
-    <!-- <style>
-    /* Floating Chat Button */
-    #chatbot-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #ff4081;
-      color: white;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-      font-size: 24px;
-      z-index: 1000;
-    }
-
-    /* Chat Window */
-    #chatbot-window {
-      position: fixed;
-      bottom: 90px;
-      right: 20px;
-      width: 320px;
-      height: 420px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
-      display: none;
-      flex-direction: column;
-      z-index: 1000;
-      overflow: hidden;
-    }
-
-    #chatbot-header {
-      background: #ff4081;
-      color: white;
-      padding: 10px;
-      text-align: center;
-      font-weight: bold;
-    }
-
+    
+<style>
     #chatbot-messages {
       flex: 1;
       padding: 10px;
@@ -257,93 +215,8 @@
   <p class="mb-0">&copy; 2025 SaloonEase. All Rights Reserved.</p>
 </footer>
 
-<!-- <div id="chatbot-btn">
-  <i class="fas fa-comment"></i>
-</div>
-
-Chatbot Window
-<div id="chatbot-window" class="d-flex">
-  <div id="chatbot-header">💬 SaloonEase Chat</div>
-  <div id="chatbot-messages">
-    <div class="bot-msg">Hello 👋! How can I help you today?</div>
-  </div>
-  <div id="chatbot-input">
-    <input type="text" id="user-input" placeholder="Type a message...">
-    <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
-  </div>
-</div> -->
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- <script>
-const chatbotBtn = document.getElementById("chatbot-btn");
-const chatbotWindow = document.getElementById("chatbot-window");
-const sendBtn = document.getElementById("send-btn");
-const userInput = document.getElementById("user-input");
-const messages = document.getElementById("chatbot-messages");
-
-// Backend URL
-const API_URL = "http://localhost:8080/api/chatbot/ask";
-
-// Toggle Chatbot
-chatbotBtn.addEventListener("click", () => {
-  chatbotWindow.style.display = chatbotWindow.style.display === "none" ? "flex" : "none";
-});
-
-// Send Message
-sendBtn.addEventListener("click", sendMessage);
-userInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") sendMessage();
-});
-
-async function sendMessage() {
-  const msg = userInput.value.trim();
-  if (msg === "") return;
-
-  // Add user message to chat
-  const userMsg = document.createElement("div");
-  userMsg.className = "user-msg";
-  userMsg.innerText = msg;
-  messages.appendChild(userMsg);
-
-  userInput.value = "";
-  messages.scrollTop = messages.scrollHeight;
-
-  // Call backend
-  try {
-    const response = await fetch(API_URL, {
-      method: "POST",
-      headers: { 
-        "Content-Type": "application/json" 
-      },
-      body: JSON.stringify({ message: msg })
-    });
-
-    // Check if response is OK
-    if (!response.ok) {
-      throw new Error(`Server returned ${response.status}`);
-    }
-
-    const data = await response.json();
-
-    // Add bot reply
-    const botMsg = document.createElement("div");
-    botMsg.className = "bot-msg";
-    botMsg.innerText = data.reply || "Sorry, the chatbot is busy. Please try again later.";
-    messages.appendChild(botMsg);
-    messages.scrollTop = messages.scrollHeight;
-
-  } catch (error) {
-    const botMsg = document.createElement("div");
-    botMsg.className = "bot-msg";
-    botMsg.innerText = "Error connecting to server. Please try again.";
-    messages.appendChild(botMsg);
-    messages.scrollTop = messages.scrollHeight;
-    console.error("Chatbot error:", error);
-  }
-}
-</script> -->
+<script src="../js/salon-chatbot.js"></script>
 
 
 
