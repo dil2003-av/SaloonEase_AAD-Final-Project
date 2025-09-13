@@ -9,40 +9,43 @@
   <link rel="stylesheet" href="../css/admin-style.css">
   <style>
     .table-light th {
-      color: #000;       /* Make header text visible */
-      background-color: #f8f9fa; /* Light background for headers */
+      color: #000;
+      background-color: #f8f9fa;
     }
     .table-hover tbody tr:hover {
       background-color: #f1f1f1;
     }
-  .table-light th {
-    color: #000;       
-    background-color: #f8f9fa; 
-  }
-
-  .table-hover tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-
-  /* Increase table row height */
-  table.table tbody tr {
-    height: 60px; /* Adjust as needed */
-  }
-
-  table.table tbody tr td {
-    vertical-align: middle; /* Center content vertically */
-    padding: 12px 8px; /* Adjust padding */
-  }
-
-  /* Optional: spacing between rows */
-  table.table tbody tr + tr {
-    border-top: 2px solid #dee2e6;
-  }
-
-  /* Space between action buttons */
-  table.table tbody tr td .btn {
-    margin-right: 5px;
-  }    
+    table.table tbody tr {
+      height: 60px;
+    }
+    table.table tbody tr td {
+      vertical-align: middle;
+      padding: 12px 8px;
+    }
+    table.table tbody tr + tr {
+      border-top: 2px solid #dee2e6;
+    }
+    table.table tbody tr td .btn {
+      margin-right: 5px;
+    }
+    .search-box {
+      max-width: 400px;
+      margin-bottom: 20px;
+    }
+    .status-badge {
+      padding: 5px 10px;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: 500;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+    .status-pending { background-color: rgb(236, 240, 9); }
+    .status-confirmed { background-color: green; }
+    .status-cancelled { background-color: red; }
+    .pagination { cursor: pointer; }
+    .pagination li { display: inline-block; margin: 0 5px; }
+    .pagination li.active a { font-weight: bold; color: #fff; background-color: #0d6efd; border-radius: 5px; padding: 5px 10px; }
   </style>
 </head>
 <body>
@@ -58,12 +61,12 @@
         <li><a href="admindashboard.html" class="nav-link">Dashboard</a></li>
         <li><a href="admin-services.html" class="nav-link">Services</a></li>
         <li><a href="admin-appointments.html" class="nav-link active">Appointments</a></li>
-            <li><a href="admin-profile.html" class="nav-link"><i class="fas fa-user-circle"></i> Profile</a></li>
-    <li><a href="admin-settings.html" class="nav-link"><i class="fas fa-cog"></i> Settings</a></li>
-    <li><a href="admin-reports.html" class="nav-link"><i class="fas fa-chart-line"></i> Reports</a></li>
-    <li><a href="admin-reviews.html" class="nav-link"><i class="fas fa-users"></i>Reviews</a></li>
-    <li><a href="admin-notifications.html" class="nav-link"><i class="fas fa-bell"></i> Notifications</a></li>
-    <li class="mt-4"><a href="login.html" class="nav-link text-danger"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        <li><a href="admin-profile.html" class="nav-link"><i class="fas fa-user-circle"></i> Profile</a></li>
+        <li><a href="admin-settings.html" class="nav-link"><i class="fas fa-cog"></i> Settings</a></li>
+        <li><a href="admin-reports.html" class="nav-link"><i class="fas fa-chart-line"></i> Reports</a></li>
+        <li><a href="admin-reviews.html" class="nav-link"><i class="fas fa-users"></i> Reviews</a></li>
+        <li><a href="admin-notifications.html" class="nav-link"><i class="fas fa-bell"></i> Notifications</a></li>
+        <li class="mt-4"><a href="login.html" class="nav-link text-danger"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
       </ul>
     </div>
 
@@ -71,6 +74,14 @@
     <div class="content p-4" style="flex-grow:1;">
       <h2 class="mb-4">Appointment Management</h2>
 
+      <!-- Search -->
+      <div class="search-box input-group">
+        <input type="text" id="searchEmail" class="form-control" placeholder="Search by user email">
+        <button class="btn btn-outline-primary" onclick="searchByEmail()"><i class="fas fa-search"></i> Search</button>
+        <button class="btn btn-outline-secondary" onclick="fetchAdminAppointments()"><i class="fas fa-undo"></i> Reset</button>
+      </div>
+
+      <!-- Table -->
       <div class="table-responsive">
         <table class="table table-hover align-middle">
           <thead class="table-light">
@@ -86,28 +97,20 @@
             </tr>
           </thead>
           <tbody id="adminAppointmentTableBody">
-            <!-- Sample row for testing -->
-            <tr>
-              <td>1</td>
-              <td>testuser@gmail.com</td>
-              <td>Haircut</td>
-              <td>1500</td>
-              <td>2025-09-10</td>
-              <td>10:00 AM</td>
-              <td>Pending</td>
-              <td>
-                <button class="btn btn-sm btn-warning">Edit</button>
-                <button class="btn btn-sm btn-danger">Delete</button>
-              </td>
-            </tr>
           </tbody>
         </table>
       </div>
+
+      <!-- Pagination -->
+      <nav>
+        <ul id="pagination" class="pagination"></ul>
+      </nav>
+
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../js/admin-appointments.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/admin-appointments.js"></script>
 </body>
 </html>
