@@ -55,6 +55,7 @@ public class AuthService {
                 .email(registerDTO.getEmail())
                 .password(passwordEncoder.encode(registerDTO.getPassword()))
                 .role(Role.valueOf(registerDTO.getRole()))
+                .status("PENDING")
                 .build();
 
         userRepository.save(user);

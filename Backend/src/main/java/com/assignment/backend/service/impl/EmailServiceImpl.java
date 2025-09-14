@@ -75,4 +75,29 @@ public class EmailServiceImpl implements EmailService {
             e.printStackTrace();
         }
     }
+    public void sendApprovalEmail(String toEmail, String username) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+            helper.setFrom(senderEmail);
+            helper.setTo(toEmail);
+            helper.setSubject("SaloonEase - Account Approved");
+
+            String htmlContent = "<html><body style='font-family: Arial, sans-serif;'>" +
+                    "<h2 style='color:green;'>Account Approved</h2>" +
+                    "<p>Dear " + username + ",</p>" +
+                    "<p>Your account has been <b>approved</b> by the admin.</p>" +
+                    "<p>Thank you for choosing SaloonEase!</p>" +
+                    "<hr style='border-top:1px solid #eee;'/>" +
+                    "<p style='font-size:12px;color:#888;'>Contact: info@saloonease.com | +94 77 123 4567</p>" +
+                    "</body></html>";
+
+            helper.setText(htmlContent, true);
+            mailSender.send(message);
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
 }
