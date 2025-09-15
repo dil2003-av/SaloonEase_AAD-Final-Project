@@ -100,4 +100,94 @@ public class EmailServiceImpl implements EmailService {
             e.printStackTrace();
         }
     }
+    public void sendBlockEmail(String toEmail, String username) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+            helper.setFrom(senderEmail);
+            helper.setTo(toEmail);
+            helper.setSubject("SaloonEase - Account Blocked");
+
+            String htmlContent = "<!DOCTYPE html>" +
+                    "<html>" +
+                    "<head>" +
+                    "<meta charset='UTF-8'>" +
+                    "<style>" +
+                    "body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f8f9fa; }" +
+                    ".container { background-color: #ffffff; padding: 20px; border-radius: 8px; max-width: 600px; margin: auto; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }" +
+                    "h2 { color: #dc3545; margin-top: 0; }" +
+                    "p { font-size: 14px; color: #333; line-height: 1.6; }" +
+                    ".footer { font-size: 12px; color: #888; margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px; text-align: center; }" +
+                    ".alert { font-size: 48px; color: #dc3545; text-align: center; margin-bottom: 15px; }" +
+                    "</style>" +
+                    "</head>" +
+                    "<body>" +
+                    "<div class='container'>" +
+                    "<div class='alert'>⚠️</div>" +
+                    "<h2>Account Blocked</h2>" +
+                    "<p>Dear " + username + ",</p>" +
+                    "<p>We regret to inform you that your account has been <b>blocked</b> by the admin.</p>" +
+                    "<p>If you believe this was a mistake or need assistance, please contact our support team immediately.</p>" +
+                    "<p>We value your trust and are here to help resolve this issue.</p>" +
+                    "<div class='footer'>" +
+                    "<p>📩 info@saloonease.com | 📞 +94 77 123 4567</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</body>" +
+                    "</html>";
+
+
+            helper.setText(htmlContent, true);
+            mailSender.send(message);
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void sendUnblockEmail(String toEmail, String username) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+            helper.setFrom(senderEmail);
+            helper.setTo(toEmail);
+            helper.setSubject("SaloonEase - Account Unblocked");
+
+            String htmlContent = "<!DOCTYPE html>" +
+                    "<html>" +
+                    "<head>" +
+                    "<meta charset='UTF-8'>" +
+                    "<style>" +
+                    "body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f9f9f9; }" +
+                    ".container { background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }" +
+                    "h2 { color: #28a745; }" +
+                    "p { font-size: 14px; color: #333; }" +
+                    ".footer { font-size: 12px; color: #888; margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px; }" +
+                    "</style>" +
+                    "</head>" +
+                    "<body>" +
+                    "<div class='container'>" +
+                    "<h2>✅ Account Unblocked</h2>" +
+                    "<p>Dear " + username + ",</p>" +
+                    "<p>We are happy to inform you that your account has been <b>unblocked</b> by the admin.</p>" +
+                    "<p>You can now log back into <b>SaloonEase</b> and continue enjoying our services.</p>" +
+                    "<p>If you encounter any issues, feel free to reach out to our support team.</p>" +
+                    "<div class='footer'>" +
+                    "<p>📩 Contact: info@saloonease.com | 📞 +94 77 123 4567</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</body>" +
+                    "</html>";
+
+
+            helper.setText(htmlContent, true);
+            mailSender.send(message);
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

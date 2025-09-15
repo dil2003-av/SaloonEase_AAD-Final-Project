@@ -32,8 +32,28 @@ public class AdminServiceImpl implements AdminService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found"));
         user.setStatus("BLOCKED");
-        return userRepository.save(user);
+        userRepository.save(user);
+
+        // Send email notification
+        emailService.sendBlockEmail(user.getEmail(), user.getUsername());
+
+        return user;
     }
+
+    @Override
+    public User unblockUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        user.setStatus("APPROVED"); // or "ACTIVE" if you use that
+        userRepository.save(user);
+
+        // Send email notification
+        emailService.sendUnblockEmail(user.getEmail(), user.getUsername());
+
+        return user;
+    }
+
+
 
     @Override
     public User changeUserRole(Long id, Role role) {

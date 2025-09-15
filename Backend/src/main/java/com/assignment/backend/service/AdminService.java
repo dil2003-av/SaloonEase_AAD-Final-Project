@@ -16,4 +16,7 @@ public interface AdminService {
     void deleteUser(Long id);
 
     List<User> getAllUsers();
+    User unblockUser(Long id);
+
+
 }

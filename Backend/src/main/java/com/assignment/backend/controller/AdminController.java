@@ -30,6 +30,11 @@ public class AdminController {
     public User blockUser(@PathVariable Long id) {
         return adminService.blockUser(id);
     }
+    @PostMapping("/unblock/{id}")
+    public User unblockUser(@PathVariable Long id) {
+        return adminService.unblockUser(id);
+    }
+
 
     @PostMapping("/changeRole/{id}")
     public User changeUserRole(@PathVariable Long id, @RequestParam Role role) {

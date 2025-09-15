@@ -8,4 +8,11 @@ public interface EmailService {
     void sendAppointmentCancellationEmail(AppointmentDTO appointmentDTO);
 
     void sendApprovalEmail(String toEmail, String username);
+
+
+    void sendBlockEmail(String email, String username);
+
+
+    void sendUnblockEmail(String email, String username);
+
 }
