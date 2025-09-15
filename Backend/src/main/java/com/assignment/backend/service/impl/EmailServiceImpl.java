@@ -6,6 +6,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -189,5 +190,71 @@ public class EmailServiceImpl implements EmailService {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void sendPaymentConfirmation(String to, String name, String serviceName, double amount) {
+        String subject = "Payment Confirmation - SaloonEase";
+        String message = String.format(
+                "Hello %s,\n\nThank you for your payment!\n\n" +
+                        "Service: %s\n" +
+                        "Amount: LKR %.2f\n\n" +
+                        "Your appointment is now confirmed as PAID.\n\n" +
+                        "Best regards,\nSaloonEase Team",
+                name, serviceName, amount
+        );
+
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(to);
+        mailMessage.setSubject(subject);
+        mailMessage.setText(message);
+
+        mailSender.send(mailMessage);
+    }
+
+    public void sendPaymentReceivedEmail(String toEmail, String username, AppointmentDTO dto) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+            helper.setFrom(senderEmail);
+            helper.setTo(toEmail);
+            helper.setSubject("SaloonEase - Payment Received");
+
+            String htmlContent = "<!DOCTYPE html>" +
+                    "<html>" +
+                    "<head>" +
+                    "<meta charset='UTF-8'>" +
+                    "<style>" +
+                    "body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f9f9f9; }" +
+                    ".container { background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }" +
+                    "h2 { color: #28a745; }" +
+                    "p { font-size: 14px; color: #333; }" +
+                    ".footer { font-size: 12px; color: #888; margin-top: 20px; border-top: 1px solid #eee; padding-top: 10px; }" +
+                    "</style>" +
+                    "</head>" +
+                    "<body>" +
+                    "<div class='container'>" +
+                    "<h2>✅ Payment Received</h2>" +
+                    "<p>Dear " + username + ",</p>" +
+                    "<p>We have received your payment for the appointment on <b>"
+                    + dto.getBookingDate() + "</b> at <b>" + dto.getAppointmentTime() + "</b>.</p>" +
+                    "<p><b>Service:</b> " + dto.getServiceName() + "<br>" +
+                    "<b>Amount Paid:</b> " + dto.getPrice() + "</p>" +
+                    "<p>Thank you for choosing <b>SaloonEase</b>!</p>" +
+                    "<div class='footer'>" +
+                    "<p>📩 Contact: info@saloonease.com | 📞 +94 77 123 4567</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "</body>" +
+                    "</html>";
+
+            helper.setText(htmlContent, true);  // true = HTML
+            mailSender.send(message);
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

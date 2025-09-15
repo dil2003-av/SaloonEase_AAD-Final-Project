@@ -101,7 +101,15 @@ public class AppointmentServiceImpl implements AppointmentService {
             emailService.sendAppointmentConfirmationEmail(dto);
         } else if ("Cancelled".equalsIgnoreCase(status)) {
             emailService.sendAppointmentCancellationEmail(dto);
-        }
+
+    } else if ("Paid".equalsIgnoreCase(status)) {
+        // Send HTML payment received email
+        emailService.sendPaymentReceivedEmail(
+                appointment.getUser().getEmail(),
+                appointment.getUser().getUsername(),
+                dto
+        );
+    }
     }
 
     @Override

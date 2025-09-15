@@ -15,4 +15,7 @@ public interface EmailService {
 
     void sendUnblockEmail(String email, String username);
 
+    void sendPaymentConfirmation(String to, String name, String serviceName, double amount);
+
+    void sendPaymentReceivedEmail(String toEmail, String username, AppointmentDTO dto);
 }
