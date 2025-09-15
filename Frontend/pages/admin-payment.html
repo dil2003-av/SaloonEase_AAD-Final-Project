@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Payments - SaloonEase</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f9fa; }
+
+
+
+.sidebar { background: linear-gradient(180deg, #2c3e50, #34495e); color: #fff; position: fixed; height: 100vh; overflow-y: auto; }
+.sidebar-logo { text-align: center; margin-bottom: 30px; padding: 20px 0; }
+.sidebar-logo .logo-circle { width: 60px; height: 60px; background: linear-gradient(45deg, #ff99b6, #ff4d6d); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; font-size: 24px; }
+.sidebar-logo span { font-size: 1.3rem; font-weight: 700; color: #fff; }
+.sidebar .nav-link { color: #bdc3c7; font-weight: 500; border-radius: 8px; margin: 5px 15px; padding: 12px 20px; display: flex; align-items: center; transition: all 0.3s ease; }
+.sidebar .nav-link.active { background: linear-gradient(45deg, #ff99b6, #ff4d6d); color: #fff !important; font-weight: 600; box-shadow: 0 4px 15px rgba(255,77,109,0.3); }
+.sidebar .nav-link:hover { background-color: rgba(255,255,255,0.1); color: #fff; transform: translateX(5px); }
+.sidebar .nav-link i { width: 20px; margin-right: 12px; }
+.content { margin-left: 280px; padding: 30px; min-height: 100vh; }
+</style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="d-flex flex-column flex-shrink-0 p-3 sidebar" style="width: 280px;">
+    <div class="sidebar-logo">
+      <div class="logo-circle"><i class="fas fa-cut"></i></div>
+      <span>SaloonEase</span>
+    </div>
+    <hr style="border-color: rgba(255,255,255,0.2);">
+    <ul class="nav nav-pills flex-column mb-auto">
+ <li><a href="admindashboard.html" class="nav-link"><i class="fas fa-user-circle"></i> Dashboard</a></li>      
+ <li><a href="admin-services.html" class="nav-link"><i class="fas fa-spa"></i> Services</a></li>
+      <li><a href="admin-appointments.html" class="nav-link"><i class="fas fa-calendar-check"></i> Appointments</a></li>
+      <li><a href="admin-payment.html" class="nav-link active"><i class="fas fa-credit-card"></i> Payments</a></li>
+       <li class="nav-item"><a href="admin-profile.html" class="nav-link"><i class="fas fa-tachometer-alt"></i> Profile</a></li>
+      <li><a href="admin-user.html" class="nav-link"><i class="fas fa-cog"></i> User-Managment</a></li>
+      <li><a href="admin-reports.html" class="nav-link"><i class="fas fa-chart-line"></i> Reports</a></li>
+      <li><a href="admin-reviews.html" class="nav-link"><i class="fas fa-users"></i>Reviews</a></li>
+      <li><a href="admin-notifications.html" class="nav-link"><i class="fas fa-bell"></i> Notifications</a></li>
+      <li class="mt-4"><a href="login.html" class="nav-link text-danger"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </div>
+
+<!-- Main Content -->
+<div class="content">
+  <h2>Payments Management</h2>
+  <br>
+  <br>
+
+  <table class="table table-bordered" id="paymentsTable">
+      <thead>
+          <tr>
+              <th>Payment ID</th>
+              <th>Appointment ID</th>
+              <th>Amount</th>
+              <th>Payment Date</th>
+              <th>Payment Method</th>
+              <th>Status</th>
+              <th>Action</th>
+          </tr>
+      </thead>
+      <tbody id="paymentsTableBody">
+          <!-- Filled by JS -->
+      </tbody>
+  </table>
+</div>
+
+<script>
+const API_BASE_URL = "http://localhost:8080/api/v1/payments";
+
+function getHeaders() {
+    return { "Content-Type": "application/json" };
+}
+
+function formatDate(dateStr) {
+    if (!dateStr) return "-";
+    const date = new Date(dateStr);
+    return date.toLocaleString();
+}
+
+async function fetchPayments() {
+    try {
+        const res = await fetch(`${API_BASE_URL}/all`, { headers: getHeaders() });
+        if (!res.ok) throw new Error("Failed to fetch payments");
+        const payments = await res.json();
+
+        const tbody = document.getElementById("paymentsTableBody");
+        tbody.innerHTML = "";
+
+        payments.forEach(p => {
+            let actionHtml = "";
+            if (p.status && p.status.toUpperCase() === "COMPLETED") {
+                actionHtml = `<button class="btn btn-success btn-sm" disabled>Paid</button>`;
+            } else {
+                actionHtml = `<span class="text-success fw-bold">PAID</span>`;
+            }
+
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td>${p.paymentId || "-"}</td>
+                <td>${p.appointmentId || "-"}</td>
+                <td>${p.amount || "-"}</td>
+                <td>${formatDate(p.paymentDate)}</td>
+                <td>${p.paymentMethod || "-"}</td>
+                <td>${p.status || "-"}</td>
+                <td>${actionHtml}</td>
+            `;
+            tbody.appendChild(tr);
+        });
+    } catch (err) {
+        console.error(err);
+        Swal.fire("Error", err.message || "Unable to fetch payments", "error");
+    }
+}
+
+fetchPayments();
+</script>
+
+</body>
+</html>
