@@ -348,6 +348,7 @@ import com.assignment.backend.entity.Appointment;
 import com.assignment.backend.entity.Payments;
 import com.assignment.backend.repository.AppointmentRepository;
 import com.assignment.backend.repository.PaymentsRepository;
+import com.assignment.backend.service.EmailService;
 import com.assignment.backend.service.PaymentsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -356,6 +357,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.time.LocalDateTime;
@@ -382,6 +384,10 @@ public class PaymentsServiceImpl implements PaymentsService {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
+
+    @Autowired
+    private EmailService emailService;
+
 
     @Override
     public PaymentsDTO createPayment(PaymentsDTO dto) {
@@ -423,14 +429,48 @@ public class PaymentsServiceImpl implements PaymentsService {
     public PaymentsDTO updatePaymentStatus(Long paymentId, String status) {
         Payments payment = paymentsRepository.findById(paymentId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Payment not found"));
+
         payment.setStatus(status.toUpperCase());
-        return convertToDTO(paymentsRepository.save(payment));
+        Payments saved = paymentsRepository.save(payment);
+
+        // If payment is successful -> mark appointment as Paid + send email
+        if ("PAID".equalsIgnoreCase(status)) {
+            Appointment appointment = payment.getAppointment();
+            appointment.setStatus("PAID");
+            appointmentRepository.save(appointment);
+
+            try {
+                emailService.sendPaymentConfirmation(
+                        appointment.getUser().getEmail(),
+                        appointment.getUser().getUsername(),
+                        appointment.getService().getName(),
+                        appointment.getPrice()
+                );
+            } catch (Exception e) {
+                log.error("Failed to send payment confirmation email", e);
+            }
+        }
+
+        return convertToDTO(saved);
     }
 
     @Override
     public Map<String, Object> createPayHereFormData(Long appointmentId) {
         Appointment appointment = appointmentRepository.findById(appointmentId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Appointment not found"));
+
+
+        if (paymentsRepository.findByAppointment_Id(appointmentId).isEmpty()) {
+            Payments payment = new Payments();
+            payment.setAppointment(appointment);
+            payment.setAmount(new BigDecimal(String.valueOf(appointment.getPrice())));
+            payment.setPaymentDate(LocalDateTime.now());
+            payment.setPaymentMethod("PAYHERE");
+            payment.setStatus("PENDING");
+            payment.getTransactionId();
+            paymentsRepository.save(payment);
+        }
+
 
         String orderId = appointment.getId().toString();
         String amount = String.format("%.2f", appointment.getPrice());
@@ -471,6 +511,19 @@ public class PaymentsServiceImpl implements PaymentsService {
         payment.setStatus(status.toUpperCase());
         payment.setTransactionId(transactionId);
         paymentsRepository.save(payment);
+
+        if ("2".equals(status)) { // PayHere "2" means success
+            Appointment appointment = payment.getAppointment();
+            appointment.setStatus("PAID");
+            appointmentRepository.save(appointment);
+
+            emailService.sendPaymentConfirmation(
+                    appointment.getUser().getEmail(),
+                    appointment.getUser().getUsername(),
+                    appointment.getService().getName(),
+                    appointment.getPrice()
+            );
+        }
     }
 
     private PaymentsDTO convertToDTO(Payments payment) {

@@ -11,6 +11,9 @@
       font-size: 0.85rem;
       font-weight: 600;
     }
+
+
+
     
     .status-pending { background: #feca57; color: #2c3e50; }
     .status-confirmed { background: #48dbfb; color: #2c3e50; }
