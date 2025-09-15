@@ -1,16 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.querySelector("form");
 
-  // Default admin credentials
-  const defaultAdmin = {
-    name: "Admin",
-    email: "admin@salonease.com",
-    password: "admin123"
-  };
-
-  // Store your access token (you can get this from localStorage, sessionStorage, or a secure storage)
-
-
   loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
@@ -26,24 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Check if login is default admin
-    // if (email === defaultAdmin.email && password === defaultAdmin.password) {
-    //   localStorage.setItem("token", "admin-token"); // dummy token for admin
-    //   Swal.fire({
-    //     icon: 'success',
-    //     title: `Hello ${defaultAdmin.name}!`,
-    //     text: 'Welcome to SalonEase',
-    //     confirmButtonText: 'Continue'
-    //   }).then(() => {
-    //     window.location.href = "admindashboard.html";
-    //   });
-    //   return;
-    // }
-
-    // Normal login for other users
     const loginData = { email, password };
-
-
 
     try {
       const response = await fetch("http://localhost:8080/auth/login", {
@@ -62,9 +35,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const userName = result.data.name || "User";
         const userRole = result.data.role || "USER";
 
+        // Greeting message: Admin vs Normal User
+        const greeting = (userRole.toUpperCase() === "ADMIN") ? "Admin" : userName;
+
         Swal.fire({
           icon: 'success',
-          title: `Hello ${userName}!`,
+          title: `Hello ${greeting}!`,
           text: 'Welcome to SalonEase',
           confirmButtonText: 'Continue'
         }).then(() => {
