@@ -467,7 +467,7 @@ public class PaymentsServiceImpl implements PaymentsService {
             payment.setPaymentDate(LocalDateTime.now());
             payment.setPaymentMethod("PAYHERE");
             payment.setStatus("PENDING");
-            payment.getTransactionId();
+            payment.setTransactionId("TXN-" + appointmentId + "-" + System.currentTimeMillis());
             paymentsRepository.save(payment);
         }
 
