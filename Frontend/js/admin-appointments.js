@@ -107,7 +107,6 @@ function resetSearch() {
 }
 
 // Update appointment status
-// Update appointment status
 async function updateStatus(id) {
   const { value: status } = await Swal.fire({
     title: "Update Appointment Status",
@@ -115,7 +114,7 @@ async function updateStatus(id) {
     inputOptions: { 
       Confirmed: "Approve", 
       Cancelled: "Decline", 
-      Paid: "Mark as Paid"   // ✅ Added
+      Paid: "Mark as Paid"
     },
     inputPlaceholder: "Select status",
     showCancelButton: true,
@@ -125,6 +124,16 @@ async function updateStatus(id) {
   if (!status) return;
 
   try {
+    // 🟡 Show buffer alert before calling backend
+    Swal.fire({
+      title: "Please wait...",
+      text: "Updating appointment and sending email notification...",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
     const res = await fetch(`${API_BASE_URL}/status/${id}?status=${status}`, {
       method: "PATCH",
       headers: getHeaders()
@@ -135,15 +144,24 @@ async function updateStatus(id) {
     badge.textContent = status;
     badge.className = `status-badge status-${status.toLowerCase()}`;
 
-    Swal.fire("Updated!", `Appointment status changed to ${status}.`, "success");
-
     allAppointments.forEach(a => { if (a.id === id) a.status = status; });
     filteredAppointments.forEach(a => { if (a.id === id) a.status = status; });
+
+    // 🟢 Success alert after buffer
+    Swal.fire({
+      icon: "success",
+      title: "Updated!",
+      text: `Appointment status changed to ${status}. Email queued.`,
+      timer: 2500,
+      showConfirmButton: false
+    });
+
   } catch (err) {
     console.error(err);
     Swal.fire("Error!", "Failed to update status.", "error");
   }
 }
+
 
 
 // Delete appointment

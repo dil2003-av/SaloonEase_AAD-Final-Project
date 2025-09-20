@@ -450,7 +450,6 @@ public class PaymentsServiceImpl implements PaymentsService {
                 log.error("Failed to send payment confirmation email", e);
             }
         }
-
         return convertToDTO(saved);
     }
 
