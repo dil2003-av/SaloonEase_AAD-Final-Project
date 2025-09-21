@@ -63,6 +63,9 @@ The project provides an **end-to-end salon management solution**, integrating ap
 ### 🛍️ Customer Services
 ![Customer Services](screenshots/CustomerServices.png)
 
+### 🤖 Chatbot
+![ChatBot](screenshots/chatbot.png)
+
 ---
 
 ## ⚙️ Setup Instructions
