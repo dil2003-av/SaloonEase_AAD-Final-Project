@@ -5,7 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SalonEase Login</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" href="../css/login.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <style>
+    .google-btn-container {
+      margin-top: 15px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  </style>
 </head>
 <body>
   <div class="login-box">
@@ -28,6 +37,28 @@
         
         <button type="submit">Login</button>
       </form>
+
+      <!-- Google Sign-In Button -->
+      <div class="google-btn-container">
+        <div id="g_id_onload"
+             data-client_id="170710909244-d12kvpsel2l4ltc1a055ree0e5n5u5co.apps.googleusercontent.com"
+             data-context="signin"
+             data-ux_mode="popup"
+             data-callback="handleCredentialResponse"
+             data-auto_select="false"
+             data-itp_support="true">
+        </div>
+
+        <div class="g_id_signin"
+             data-type="standard"
+             data-shape="rectangular"
+             data-theme="outline"
+             data-text="continue_with"
+             data-size="large"
+             data-logo_alignment="left">
+        </div>
+      </div>
+
       <div class="extra-links">
         <p><a href="forgetPassword.html">Forgot Password?</a></p>
         <p>Don’t have an account? <a href="signup.html">Sign Up</a></p>
@@ -50,11 +81,31 @@
         eyeIcon.classList.add("fa-eye");
       }
     }
+
+    // Google callback
+    function handleCredentialResponse(response) {
+      console.log("Encoded JWT ID token: " + response.credential);
+
+      // Send token to backend for verification
+      fetch("http://localhost:8080/api/v1/auth/google-login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ token: response.credential })
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log("Server Response:", data);
+        Swal.fire("Success", "Logged in with Google!", "success");
+      })
+      .catch(err => {
+        console.error("Error verifying token:", err);
+        Swal.fire("Error", "Google login failed!", "error");
+      });
+    }
   </script>
 
-    <!-- Include SweetAlert2 -->
+  <!-- Include SweetAlert2 -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../js/login.js"></script>
-
 </body>
 </html>

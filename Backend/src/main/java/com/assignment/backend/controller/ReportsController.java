@@ -2,6 +2,7 @@ package com.assignment.backend.controller;
 
 import com.assignment.backend.dto.AppointmentDTO;
 import com.assignment.backend.dto.PaymentsDTO;
+import com.assignment.backend.dto.PopularServiceDTO;
 import com.assignment.backend.dto.ServiceDTO;
 import com.assignment.backend.service.AppointmentService;
 import com.assignment.backend.service.PaymentsService;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/reports")
@@ -42,6 +44,21 @@ public class ReportsController {
         return ResponseEntity.ok(services);
     }
 
+    @GetMapping("/popular-services")
+    public ResponseEntity<?> getPopularServices() {
+        List<AppointmentDTO> appointments = appointmentService.getAllAppointments();
+
+        Map<String, Long> usageMap = appointments.stream()
+                .collect(Collectors.groupingBy(AppointmentDTO::getServiceName, Collectors.counting()));
+
+        List<PopularServiceDTO> popularServices = usageMap.entrySet().stream()
+                .map(e -> new PopularServiceDTO(e.getKey(), e.getValue()))
+                .sorted((a, b) -> b.getUsageCount().compareTo(a.getUsageCount()))
+                .limit(5)
+                .toList();
+
+        return ResponseEntity.ok(popularServices);
+    }
 
     // Fetch bill for a specific appointment
     @GetMapping("/bill/{appointmentId}")

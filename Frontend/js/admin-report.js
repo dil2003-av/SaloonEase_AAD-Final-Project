@@ -169,13 +169,22 @@ function renderPaymentsChart(payments) {
     });
 }
 
-function renderServicesChart(services) {
-    const sorted = services.sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0)).slice(0, 5);
+let servicesChartInstance; // global variable
 
-    new Chart(document.getElementById("servicesChart"), {
+function renderServicesChart(services) {
+    const sorted = services
+        .sort((a, b) => (b.usageCount || 0) - (a.usageCount || 0))
+        .slice(0, 5);
+
+    // Destroy previous chart if exists
+    if (servicesChartInstance) {
+        servicesChartInstance.destroy();
+    }
+
+    servicesChartInstance = new Chart(document.getElementById("servicesChart"), {
         type: "bar",
         data: {
-            labels: sorted.map(s => s.name),
+            labels: sorted.map(s => s.serviceName),
             datasets: [{
                 label: "Popular Services",
                 data: sorted.map(s => s.usageCount || 0),
@@ -187,3 +196,17 @@ function renderServicesChart(services) {
         }
     });
 }
+
+
+async function loadPopularServices() {
+    try {
+        const response = await fetch("http://localhost:8080/api/v1/reports/popular-services");
+        const data = await response.json();
+        renderServicesChart(data);  // function defined now
+    } catch (error) {
+        console.error("Error loading popular services:", error);
+    }
+}
+
+loadPopularServices();
+
