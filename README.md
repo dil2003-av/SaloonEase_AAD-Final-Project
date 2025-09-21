@@ -77,8 +77,8 @@ The project provides an **end-to-end salon management solution**, integrating ap
 
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/your-username/saloon-ease.git
-   cd saloon-ease/backend
+   git clone https://github.com/dil2003-av/SaloonEase_AAD-Final-Project.git
+   cd SaloonEase/backend
    ```
 
 2. Configure the database in `application.properties`:
@@ -104,7 +104,7 @@ The project provides an **end-to-end salon management solution**, integrating ap
 
 1. Navigate to the frontend folder:
    ```bash
-   cd saloon-ease/frontend
+   cd SaloonEase/frontend
    ```
 
 2. If using static HTML files, open `index.html` in browser, or use Live Server / simple static server.
